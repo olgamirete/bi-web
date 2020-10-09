@@ -1,0 +1,6 @@
+.dashboard-content {
+    position: relative;
+    background-color: rgb(83, 85, 87);
+    width: 100%;
+    overflow: scroll;
+}

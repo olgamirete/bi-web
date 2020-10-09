@@ -1,0 +1,86 @@
+  .resizeable-card-container {
+    position: absolute;
+    height: min-content;
+    width: min-content;
+    display: flex;
+    flex-flow: row nowrap;
+    touch-action: none;
+    box-sizing: content-box;
+    z-index: 0;
+  }
+  .resizeable-card-container.selected {
+    margin: -3px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(148, 148, 148);
+  }
+  .resizeable-card-container, .resizeable-card-container .content {
+    border-radius: 6px;
+  }
+  .resizeable-card-container .content {
+    overflow: hidden;
+    background-color: #dbdbdb;
+    /* Border */
+    margin: -1px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #bebebe;
+    /* Shadow */
+    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.1);
+  }
+  .resizeable-card-container .col-container {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  .resizeable-card-container .border {
+    position: absolute;
+    background-color: #333333;
+    opacity: 0;
+    z-index: 1;
+  }
+  .resizeable-card-container .border.horizontal {
+    height: 15px;
+    width: calc(100% - 15px);
+    left: 7.5px;
+    cursor: ns-resize;
+  }
+  .resizeable-card-container .border.horizontal.top {
+    top: -7.5px;
+  }
+  .resizeable-card-container .border.horizontal.bottom {
+    top: calc(100% - 7.5px);
+  }
+  .resizeable-card-container .border.vertical {
+    height: calc(100% - 15px);
+    width: 15px;
+    cursor: ew-resize;
+    top: 7.5px;
+    left: -7.5px;
+  }
+  .resizeable-card-container .corner {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-color: #69e71f;
+    opacity: 0;
+    z-index: 2;
+    left: -7.5px;
+  }
+  .resizeable-card-container .corner.nw {
+    cursor: nw-resize;
+    top: -7.5px;
+  }
+  .resizeable-card-container .corner.ne {
+    cursor: ne-resize;
+    top: -7.5px;
+  }
+  .resizeable-card-container .corner.sw {
+    cursor: sw-resize;
+    top: calc(100% - 7.5px);
+  }
+  .resizeable-card-container .corner.se {
+    cursor: se-resize;
+    top: calc(100% - 7.5px);
+  }
