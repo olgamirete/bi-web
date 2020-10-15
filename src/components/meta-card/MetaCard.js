@@ -1,56 +1,48 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './MetaCard.css';
 // import Border from './components/Border.js';
 // import Corner from './components/Corner.js';
-import useCardSizeAndPos from './customHooks/useCardSizeAndPos.js';
 
 function MetaCard(props) {
 
-  // const cardContainerRef = props.cardInfo.ref;
-  const cardContainerRef = useRef(null);
-  const cardContentRef = useRef(null);
-  const [size, pos, debugInfo] = useCardSizeAndPos(
-    cardContainerRef,
-    props.pointerInfo,
-    props.cardInfo.startingPos,
-    props.controlFlags.snapToGrid);
-    
-  const selected = false;
-
-  // useEffect(() => {
-
-  //   const hexColor = "#" + Math.round(parseInt("ffffff", 16) * Math.random()).toString(16);
-  //   cardContentRef.current.style.backgroundColor = hexColor.padEnd(7, "0");
-  // }, [cardContentRef]);
+  // const eventHandlers = useCardEventHandlers(props.cardMethods, props.cardInfo.id);
+  const selected = props.cardInfo.selected;
 
   return (
     <div
-      ref={cardContainerRef}
-      className={"resizeable-card-container" + (selected ? " selected" : "")}
-      style={{ left: pos.left + "px", top: pos.top + "px", backgroundColor: props.color }}>
+      id={props.cardInfo.id}
+      className={"resizeable-card-container" + (selected ? " selected" : "") + (props.controlFlags.snapToGrid ? " animate-all" : "" ) + (props.dashboardFlags.overrideHoverPointers ? " unset-cursors" : "")}
+      style={{
+        left: props.cardInfo.pos.left + "px",
+        top: props.cardInfo.pos.top + "px",
+        backgroundColor: props.color
+      }}>
       <div className="col-container">
-        <div className="corner nw"></div>
-        <div className="border vertical left"></div>
-        <div className="corner sw"></div>
+        <div className="corner nw" data-anchor={{ right: true, bottom: true }}></div>
+        <div className="border vertical left" data-anchor={{ right: true, bottom: false }}></div>
+        <div className="corner sw" data-anchor={{ right: true, bottom: false }}></div>
       </div>
 
       <div className="col-container">
-        <div className="border horizontal top"></div>
+        <div className="border horizontal top" data-anchor={{ right: false, bottom: true }}></div>
 
         {/* {props.children} */}
         <div
-          ref={cardContentRef}
           className="content"
-          style={{ width: size.width + "px", height: size.height + "px" }}>
-          {"Debug info: " + debugInfo}
+          style={{
+            width: props.cardInfo.size.width + "px",
+            height: props.cardInfo.size.height + "px"
+          }}>
+          {/* {"Debug info: " + debugInfo} */}
+          {/* {"controller index: " + controllerPointerIndex} */}
         </div>
-        <div className="border horizontal bottom"></div>
+        <div className="border horizontal bottom" data-anchor={{ right: false, bottom: false }}></div>
       </div>
 
       <div className="col-container">
-        <div className="corner ne"></div>
-        <div className="border vertical right"></div>
-        <div className="corner se"></div>
+        <div className="corner ne" data-anchor={{ right: false, bottom: true }}></div>
+        <div className="border vertical right" data-anchor={{ right: false, bottom: false }}></div>
+        <div className="corner se" data-anchor={{ right: false, bottom: false }}></div>
       </div>
 
     </div>

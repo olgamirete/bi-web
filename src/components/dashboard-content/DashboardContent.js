@@ -1,19 +1,36 @@
 import React from 'react';
 import './DashboardContent.css';
 import MetaCard from '../meta-card/MetaCard.js';
+import useCardEventHandlers from './customHooks/useCardEventHandlers.js';
+
+const DASHBOARD_ID = "dashboard-content";
 
 function DashboardContent(props) {
 
+  const [cardFlags, debugInfo] = useCardEventHandlers(
+    DASHBOARD_ID,
+    props.cardMethods,
+    props.controlFlags,
+    props.keyboardInfo);
+
   return (
     <div
-      className="dashboard-content"
-      ref={props.dashboardContentRef}>
+      id={DASHBOARD_ID}
+      className="dashboard-content">
       {
-        props.cards.map((cardInfo, i, arr) => {
+        props.controlFlags.displayGrid === true &&
+          <span>
+            <div className="smallgrid"></div>
+            <div className="grid"></div>
+          </span>
+      }
+      <span>{debugInfo}</span>
+      {
+        Array.from(props.cards.values()).map((cardInfo, i, arr) => {
           return <MetaCard
             key={i}
-            pointerInfo={props.pointerInfo}
             cardInfo={cardInfo}
+            dashboardFlags={cardFlags}
             controlFlags={props.controlFlags} />
         })
       }

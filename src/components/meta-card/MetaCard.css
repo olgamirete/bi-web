@@ -8,11 +8,17 @@
     box-sizing: content-box;
     z-index: 0;
   }
-  .resizeable-card-container.selected {
+  
+  .resizeable-card-container.animate-all {
+    /* transition: all 0.05s ease-in; */
+  }
+  
+  .resizeable-card-container.selected .content {
     margin: -3px;
     border-style: solid;
     border-width: 3px;
-    border-color: rgb(148, 148, 148);
+    border-color: #789ad8;
+    border-color: #da1cda;
   }
   .resizeable-card-container, .resizeable-card-container .content {
     border-radius: 6px;
@@ -83,4 +89,11 @@
   .resizeable-card-container .corner.se {
     cursor: se-resize;
     top: calc(100% - 7.5px);
+  }
+
+  .resizeable-card-container.unset-cursors .border {
+    cursor: unset;
+  }
+  .resizeable-card-container.unset-cursors .corner {
+    cursor: unset;
   }

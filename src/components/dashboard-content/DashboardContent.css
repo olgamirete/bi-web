@@ -1,6 +1,24 @@
 .dashboard-content {
-    position: relative;
-    background-color: rgb(83, 85, 87);
-    width: 100%;
-    overflow: scroll;
+  position: relative;
+  background-color: #555555;
+  /* background-color: #666666; */
+  width: 100%;
+  overflow: scroll;
+}
+
+.dashboard-content .grid {
+  background-image: repeating-linear-gradient(0deg,transparent,transparent 99px,#888888 99px,#888888 100px),
+                    repeating-linear-gradient(-90deg,transparent,transparent 99px,#888888 99px,#888888 100px);
+  background-size: 100px 100px;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.dashboard-content .smallgrid {
+  background-image: repeating-linear-gradient(0deg,transparent,transparent 19px,#777777 19px,#777777 20px),
+                    repeating-linear-gradient(-90deg,transparent,transparent 19px,#777777 19px,#777777 20px);
+  background-size: 20px 20px;
+  height: 100%;
+  position: absolute;
+  width: 100%;
 }

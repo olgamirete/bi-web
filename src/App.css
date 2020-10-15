@@ -19,5 +19,4 @@
   display: flex;
   flex-flow: row nowrap;
   height: calc(100% - 50px);
-
 }

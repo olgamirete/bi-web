@@ -6,16 +6,22 @@ function Controls(props) {
     <div className="controls">
       <button
         style={{ width: "auto", height: 30 }}
-        onClick={props.controls.functions.toggleSidePanel}>Menu</button>
+        onClick={props.controls.methods.toggleSidePanel}>Menu</button>
       <button
         style={{ width: 30, height: 30 }}
-        onClick={() => props.addNewCard({ left: 100, top: 300 })}>+</button>
+        onClick={() => props.cardMethods.add({ left: 100, top: 300 })}>+</button>
       <input
         type="checkbox"
-        alt="toggle grid"
+        alt="toggle snap to grid"
         readOnly
         checked={props.controls.flags.snapToGrid}
-        onPointerDown={props.controls.functions.toggleGrid} />Grid
+        onPointerDown={props.controls.methods.toggleSnapToGrid} />Snap to grid
+      <input
+        type="checkbox"
+        alt="toggle display grid"
+        readOnly
+        checked={props.controls.flags.displayGrid}
+        onPointerDown={props.controls.methods.toggleDisplayGrid} />Display grid
     </div>
   );
 }

@@ -1,28 +1,39 @@
 import { useState, useLayoutEffect } from 'react';
 
+const ID_FOR_MOUSE_POINTER = 0;
+
 function usePointerInfo(dashboardContentRef) {
 
-  
   const [pointerInfo, setPointerInfo] = useState({
     pointers: [{
-      id: null,
-      lastClickedPos: null,
-      currentPos: null,
+      id: 0,
+      lastClickedPos: {
+        pageX: 0,
+        pageY: 0,
+        clientX: 0,
+        clientY: 0,
+        dashX: 0,
+        dashY: 0
+      },
+      currentPos: {
+        pageX: 0,
+        pageY: 0,
+        clientX: 0,
+        clientY: 0,
+        dashX: 0,
+        dashY: 0
+      },
       pointerDown: false,
       isTouch: false,
-      targetElementOnStart: null,
-      ctrlPressedOnStart: false,
-      shiftPressedOnStart: false,
-      altPressedOnStart: false,
+      targetElementOnStart: null
     }],
-    ctrlPressed: false,
-    shiftPressed: false,
-    altPressed: false,
     pointerIndexPressed: 0,
     pointerIndexMoved: 0,
-    pointerIndexReleased: 0
+    pointerIndexReleased: 0,
+    pointerDownCounter: 0,
+    pointerUpCounter: 0
   });
-  
+
   const newPointersArray = (prevState, singlePointerInfo) => {
     let oldPointers = prevState.pointers;
     oldPointers[singlePointerInfo.id] = singlePointerInfo;
@@ -30,118 +41,172 @@ function usePointerInfo(dashboardContentRef) {
   }
 
   useLayoutEffect(() => {
-    
+
     const dashboardContent = dashboardContentRef.current;
     const rect = dashboardContent.getBoundingClientRect();
+    // Add handler for when the dashboard moves.
     const dashboardPos = {
       x: rect.left,
       y: rect.top
     }
 
-    const handlePointerDown = (e) => {
-      e.preventDefault();
+    const handlePointerDown = (e, eType) => {
+      // e.preventDefault();
+      // console.log("dash pos: " + JSON.stringify(dashboardPos));
+      const isTouch = (eType === "touch");
+      let pointer = null;
+      switch (eType) {
+        case "touch":
+          console.log("changed touches: " + e.changedTouches.length);
+          pointer = e.changedTouches[e.changedTouches.length-1];
+          break;
+        case "mouse":
+          pointer = e;
+          break;
+        default:
+          return Error;
+      }
+      const pointerId = isTouch === true ? pointer.identifier : ID_FOR_MOUSE_POINTER;
       setPointerInfo((prevState) => ({
         pointers: newPointersArray(prevState, {
-          id: e.pointerId,
+          id: pointerId,
           lastClickedPos: {
-            pageX: e.pageX,
-            pageY: e.pageY,
-            clientX: e.clientX,
-            clientY: e.clientY,
-            dashX: e.pageX-dashboardPos.x,
-            dashY: e.pageY-dashboardPos.y
+            pageX: pointer.pageX,
+            pageY: pointer.pageY,
+            clientX: pointer.clientX,
+            clientY: pointer.clientY,
+            dashX: pointer.pageX - dashboardPos.x,
+            dashY: pointer.pageY - dashboardPos.y
           },
           currentPos: {
-            x: e.pageX,
-            y: e.pageY,
-            clientX: e.clientX,
-            clientY: e.clientY,
-            dashX: e.pageX-dashboardPos.x,
-            dashY: e.pageY-dashboardPos.y
+            x: pointer.pageX,
+            y: pointer.pageY,
+            clientX: pointer.clientX,
+            clientY: pointer.clientY,
+            dashX: pointer.pageX - dashboardPos.x,
+            dashY: pointer.pageY - dashboardPos.y
           },
           pointerDown: true,
-          isTouch: e.pointerType === "touch",
-          targetElementOnStart: e.target,
-          ctrlPressedOnStart: e.ctrlKey,
-          shiftPressedOnStart: e.shiftKey,
-          altPressedOnStart: e.altKey,
+          isTouch: isTouch,
+          targetElementOnStart: pointer.target
         }),
-        ctrlPressed: e.ctrlKey,
-        shiftPressed: e.shiftKey,
-        altPressed: e.altKey,
-        pointerIndexPressed: e.pointerId,
+        pointerIndexPressed: pointerId,
         pointerIndexMoved: prevState.pointerIndexMoved,
-        pointerIndexReleased: prevState.pointerIndexReleased
+        pointerIndexReleased: prevState.pointerIndexReleased,
+        pointerDownCounter: prevState.pointerDownCounter + 1,
+        pointerUpCounter: prevState.pointerUpCounter
       }));
     }
 
-    const handlePointerMove = (e) => {
-      e.preventDefault();
+    const handlePointerMove = (e, eType) => {
+      // e.preventDefault();
+      const isTouch = (eType === "touch");
+      let pointer = null;
+      switch (eType) {
+        case "touch":
+          console.log("changed touches: " + e.changedTouches.length);
+          pointer = e.changedTouches[e.changedTouches.length-1];
+          break;
+        case "mouse":
+          pointer = e;
+          break;
+        default:
+          return Error;
+      }
+      const pointerId = isTouch === true ? pointer.identifier : ID_FOR_MOUSE_POINTER;
       setPointerInfo((prevState) => ({
         pointers: newPointersArray(prevState, {
-          id: e.pointerId,
-          lastClickedPos: prevState.pointers[e.pointerId].lastClickedPos,
+          id: pointerId,
+          lastClickedPos: prevState.pointers[pointerId].lastClickedPos,
           currentPos: {
-            pageX: e.pageX,
-            pageY: e.pageY,
-            clientX: e.clientX,
-            clientY: e.clientY,
-            dashX: e.pageX-dashboardPos.x,
-            dashY: e.pageY-dashboardPos.y
+            pageX: pointer.pageX,
+            pageY: pointer.pageY,
+            clientX: pointer.clientX,
+            clientY: pointer.clientY,
+            dashX: pointer.pageX - dashboardPos.x,
+            dashY: pointer.pageY - dashboardPos.y
           },
-          pointerDown: prevState.pointers[e.pointerId].pointerDown,
-          isTouch: e.pointerType === "touch",
-          targetElementOnStart: prevState.pointers[e.pointerId].targetElementOnStart,
-          ctrlPressedOnStart: prevState.pointers[e.pointerId].ctrlPressedOnStart,
-          shiftPressedOnStart: prevState.pointers[e.pointerId].shiftPressedOnStart,
-          altPressedOnStart: prevState.pointers[e.pointerId].altPressedOnStart
+          pointerDown: true,
+          isTouch: prevState.pointers[pointerId].isTouch,
+          targetElementOnStart: 0 //prevState.pointers[pointerId].targetElementOnStart
         }),
-        ctrlPressed: e.ctrlKey,
-        shiftPressed: e.shiftKey,
-        altPressed: e.altKey,
         pointerIndexPressed: prevState.pointerIndexPressed,
-        pointerIndexMoved: e.pointerId,
-        pointerIndexReleased: prevState.pointerIndexReleased
+        pointerIndexMoved: pointerId,
+        pointerIndexReleased: prevState.pointerIndexReleased,
+        pointerDownCounter: prevState.pointerDownCounter,
+        pointerUpCounter: prevState.pointerUpCounter
       }));
     }
 
-    const handlePointerUp = (e) => {
-      e.preventDefault();
+    const handlePointerUp = (e, eType) => {
+      // e.preventDefault();
+      const isTouch = (eType === "touch");
+      let pointer = null;
+      switch (eType) {
+        case "touch":
+          console.log("changed touches: " + e.changedTouches.length);
+          pointer = e.changedTouches[e.changedTouches.length-1];
+          break;
+        case "mouse":
+          pointer = e;
+          break;
+        default:
+          return Error;
+      }
+      const pointerId = isTouch === true ? pointer.identifier : ID_FOR_MOUSE_POINTER;
       setPointerInfo((prevState) => ({
         pointers: newPointersArray(prevState, {
-          id: e.pointerId,
-          lastClickedPos: prevState.pointers[e.pointerId].lastClickedPos,
+          id: pointerId,
+          lastClickedPos: prevState.pointers[pointerId].lastClickedPos,
           currentPos: {
-            pageX: e.pageX,
-            pageY: e.pageY,
-            clientX: e.clientX,
-            clientY: e.clientY,
-            dashX: e.pageX-dashboardPos.x,
-            dashY: e.pageY-dashboardPos.y
+            pageX: pointer.pageX,
+            pageY: pointer.pageY,
+            clientX: pointer.clientX,
+            clientY: pointer.clientY,
+            dashX: pointer.pageX - dashboardPos.x,
+            dashY: pointer.pageY - dashboardPos.y
           },
           pointerDown: false,
-          isTouch: prevState.pointers[e.pointerId].isTouch,
-          targetElementOnStart: prevState.pointers[e.pointerId].targetElementOnStart,
-          ctrlPressedOnStart: prevState.pointers[e.pointerId].ctrlPressedOnStart,
-          shiftPressedOnStart: prevState.pointers[e.pointerId].shiftPressedOnStart,
-          altPressedOnStart: prevState.pointers[e.pointerId].altPressedOnStart
+          isTouch: prevState.pointers[pointerId].isTouch,
+          targetElementOnStart: prevState.pointers[pointerId].targetElementOnStart
         }),
-        ctrlPressed: e.ctrlKey,
-        shiftPressed: e.shiftKey,
-        altPressed: e.altKey,
         pointerIndexPressed: prevState.pointerIndexPressed,
         pointerIndexMoved: prevState.pointerIndexMoved,
-        pointerIndexReleased: e.pointerId
+        pointerIndexReleased: pointerId,
+        pointerDownCounter: prevState.pointerDownCounter,
+        pointerUpCounter: prevState.pointerUpCounter + 1
       }));
     }
-    
-    window.addEventListener("pointerdown", handlePointerDown);
-    window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("pointerup", handlePointerUp);
+
+    const handleMouseDown = (e) => { handlePointerDown(e, "mouse"); }
+    const handleMouseMove = (e) => { handlePointerMove(e, "mouse"); }
+    const handleMouseUp = (e) => { handlePointerUp(e, "mouse"); }
+    const handleTouchStart = (e) => { handlePointerDown(e, "touch"); }
+    const handleTouchMove = (e) => { handlePointerMove(e, "touch"); }
+    const handleTouchEnd = (e) => { handlePointerUp(e, "touch"); }
+
+    window.addEventListener("mousedown", handleMouseDown, false);
+    window.addEventListener("mousemove", handleMouseMove, false);
+    window.addEventListener("mouseup", handleMouseUp, false);
+
+    window.addEventListener("touchstart", handleTouchStart, false);
+    window.addEventListener("touchmove", handleTouchMove, false);
+    window.addEventListener("touchend", handleTouchEnd, false);
+
+    // window.addEventListener("pointerdown", handlePointerDown);
+    // window.addEventListener("pointermove", handlePointerMove);
+    // window.addEventListener("pointerup", handlePointerUp);
     return () => {
-      window.removeEventListener("pointerdown", handlePointerDown);
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("pointerup", handlePointerUp);
+      // window.removeEventListener("pointerdown", handlePointerDown);
+      // window.removeEventListener("pointermove", handlePointerMove);
+      // window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("mousedown", handleMouseDown, false);
+      window.removeEventListener("mousemove", handleMouseMove, false);
+      window.removeEventListener("mouseup", handleMouseUp, false);
+
+      window.removeEventListener("touchstart", handleTouchStart, false);
+      window.removeEventListener("touchmove", handleTouchMove, false);
+      window.removeEventListener("touchend", handleTouchEnd, false);
     }
   }, [dashboardContentRef]);
 
