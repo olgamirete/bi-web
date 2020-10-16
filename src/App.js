@@ -15,10 +15,6 @@ import SidePanel from './components/side-panel/SidePanel.js';
 import DashboardContent from './components/dashboard-content/DashboardContent.js';
 // -----------------------------------------------------------------------------
 
-// Debug------------------------------------------------------------------------
-// import KeyboardData from './components/debug/KeyboardData.js';
-// -----------------------------------------------------------------------------
-
 function App() {
 
   const dashboardContentRef = useRef(null);
@@ -28,7 +24,6 @@ function App() {
   
   const [cards, cardMethods] = useCards(controls.flags);
   const [dataStructure, data] = useData();
-
 
   return (
     <div
