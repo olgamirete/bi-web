@@ -2,10 +2,100 @@
     width: 300px;
     height: 100%;
     background-color: rgb(230, 227, 223);
+    /* background-color: #dddddd; */
     transition: all 0.5s ease;
-    overflow: hidden;
+    /* overflow: hidden; */
+    display: flex;
+    flex-flow: row nowrap;
+    /* justify-content: center; */
+    /* box-sizing: content-box; */
 }
 
 .side-panel.hide {
-    width: 0;
+    width: 35px;
+}
+.side-panel.hide .sections-container {
+    display: none;
+}
+
+.side-panel .buttons-container {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 35px;
+    min-width: 35px;
+    height: auto;
+    background-color: rgb(88, 88, 88);
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-top: 5px;
+    border-style: solid;
+    border-width: 0px 3px 0px 0px;
+    border-color: #e4e4e4;
+    box-sizing: border-box;
+}
+.side-panel .buttons-container button {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    
+    height: 60px;
+    width: 30px;
+    
+    border-radius: 3px 0px 0px 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-right: none;
+    border-color: #666666;
+    
+    padding: 0;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
+    background-color: #888888;
+    color: #dddddd;
+    box-sizing: border-box;
+}
+
+.side-panel .buttons-container button .text {
+    transform: rotate(-90deg);
+    /* rotate: -90deg; */
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.side-panel .buttons-container button:hover {
+    background-color: #777777;
+    border-color: #888888;
+}
+.side-panel .buttons-container button.active {
+    background-color: #eeeeee;
+    color: #666666;
+    border-color: #dddddd;
+}
+
+.side-panel .sections-container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    border-style: solid;
+    border-color: #cccccc;
+    border-width: 0 0 0 1px;
+}
+
+.side-panel .section {
+    display: none;
+    /* background-color: chartreuse; */
+    margin: 10px;
+}
+.side-panel .section .title {
+    font-size: 15px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.side-panel .section.active {
+    display: block;
 }
