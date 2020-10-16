@@ -36,9 +36,9 @@ function App() {
 
       <div className="container-for-side-panel-and-content">
         
-        <SidePanel flagShow={controls.flags.showSidePanel}>
-          {/* <PointerData pointerInfo={pointerInfo} /> */}
-        </SidePanel>
+        <SidePanel
+          flagShow={controls.flags.showSidePanel}
+          dataStructure={dataStructure} />
         
         <DashboardContent
           dashboardContentRef={dashboardContentRef}
