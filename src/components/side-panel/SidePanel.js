@@ -29,6 +29,12 @@ function SidePanel(props) {
           onPointerDown={activateSection}>
           <span className="text">Format</span>
         </button>
+        <button
+          data-section="other"
+          className={activeSection === "other" ? "active" : ""}
+          onPointerDown={activateSection}>
+          <span className="text">Other</span>
+        </button>
       </div>
 
       <div className="sections-container">
@@ -43,6 +49,10 @@ function SidePanel(props) {
         <section className={"section" + (activeSection === "format" ? " active" : "")}>
           <h3 className="title">Format</h3>
           Format options
+        </section>
+        <section className={"section" + (activeSection === "other" ? " active" : "")}>
+          <h3 className="title">Other</h3>
+          Other
         </section>
       </div>
     </div>
