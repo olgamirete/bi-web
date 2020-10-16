@@ -45,7 +45,8 @@ function App() {
           keyboardInfo={keyboardInfo}
           cards={cards}
           cardMethods={cardMethods}
-          controlFlags={controls.flags} />
+          controlFlags={controls.flags}
+          data={data} />
 
       </div>
 
