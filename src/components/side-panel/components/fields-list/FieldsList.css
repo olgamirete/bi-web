@@ -1,0 +1,58 @@
+.table-fields-section {
+  margin: 15px;
+  margin-top: 0;
+}
+
+.table-fields-section .container-button-and-title {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.table-fields-section .container-button-and-title .button-expand-collapse {
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  margin: 0;
+  margin-right: 3px;
+  font-size: 9px;
+  color: #888888;
+  /* border-style: none; */
+  border-width: 1px;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 2px;
+  
+  /* text-align: center; */
+}
+.table-fields-section .container-button-and-title .button-expand-collapse:hover {
+  background-color: #dddddd;
+  border-color: #888888;
+}
+.table-fields-section .container-button-and-title .button-expand-collapse:active {
+  background-color: #888888;
+  color: #dddddd;
+}
+
+
+
+.table-fields-section .fields-table-name {
+  font-size: 15px;
+  margin: 0;
+  /* margin-top: 1px; */
+  /* margin-bottom: 1px; */
+}
+
+.table-fields-section .fields-list {
+  /* background-color: blueviolet; */
+  list-style: square;
+  padding-left: 23px;
+  margin: 0;
+}
+.table-fields-section .fields-list.hidden {
+  display: none;
+}
+
+.table-fields-section .fields-list .field-item {
+  /* background-color: aquamarine; */
+}
