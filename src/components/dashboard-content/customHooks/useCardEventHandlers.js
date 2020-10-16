@@ -206,6 +206,21 @@ function useCardEventHandlers(dashboardId, cardMethods, controlFlags, keyboardIn
     return () => dashboard.removeEventListener("pointerup", handlePointerUp, false);
   }, [cardMethods, dashboardId, clearBorderCursorGlobalClass]);
 
+  // Key down
+  useEffect(() => {
+    switch (keyboardInfo.lastKeyPressed) {
+      case "Escape":
+        cardMethods.clearSelection();
+        break;
+      case "Delete":
+        cardMethods.deleteSelected();
+        break;
+      default:
+        // alert(keyboardInfo.lastKeyPressed);
+        break;
+    }
+    // deleteSelectedCards
+  }, [keyboardInfo.keyPressCounter, keyboardInfo.lastKeyPressed, cardMethods]);
 
   // const handlers = {
   //   pointerDown: handlePointerDown,
