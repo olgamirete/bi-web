@@ -7,18 +7,25 @@
 }
 
 .dashboard-content .grid {
+  position: absolute;
+  height: 100%;
+  width: 100%;
   background-image: repeating-linear-gradient(0deg,transparent,transparent 99px,#888888 99px,#888888 100px),
                     repeating-linear-gradient(-90deg,transparent,transparent 99px,#888888 99px,#888888 100px);
   background-size: 100px 100px;
-  height: 100%;
-  position: absolute;
-  width: 100%;
 }
 .dashboard-content .smallgrid {
+  position: absolute;
+  height: 100%;
+  width: 100%;
   background-image: repeating-linear-gradient(0deg,transparent,transparent 19px,#777777 19px,#777777 20px),
                     repeating-linear-gradient(-90deg,transparent,transparent 19px,#777777 19px,#777777 20px);
   background-size: 20px 20px;
-  height: 100%;
-  position: absolute;
-  width: 100%;
+}
+
+.dashboard-content .debug-info {
+  position: relative;
+  left: 0;
+  top: 0;
+  background-color: #f5f3da44;
 }

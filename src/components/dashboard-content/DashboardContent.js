@@ -19,12 +19,12 @@ function DashboardContent(props) {
       className="dashboard-content">
       {
         props.controlFlags.displayGrid === true &&
-          <span>
-            <div className="smallgrid"></div>
-            <div className="grid"></div>
-          </span>
+        <span>
+          <div className="smallgrid"></div>
+          <div className="grid"></div>
+        </span>
       }
-      <span>{debugInfo}</span>
+      <span className="debug-info">{debugInfo}</span>
       {
         Array.from(props.cards.values()).map((cardInfo, i, arr) => {
           return <MetaCard
