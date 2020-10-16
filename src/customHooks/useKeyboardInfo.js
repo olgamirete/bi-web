@@ -7,16 +7,21 @@ function useKeyboardInfo() {
     lastKeyReleased: "",
     ctrlPressed: false,
     shiftPressed: false,
-    altPressed: false
+    altPressed: false,
+    keyPressCounter: 0,
+    keyReleaseCounter: 0
   });
 
   const handleKeyDown = (e) => {
     setKeyboardInfo((prevState) => ({
       lastKeyPressed: e.key,
       lastKeyReleased: prevState.lastKeyReleased,
-      ctrlPressed: prevState.ctrlPressed  || e.key === "Control",
-      shiftPressed: prevState.shiftPressed  || e.key === "Shift",
-      altPressed: prevState.altPressed  || e.key === "Alt"
+      ctrlPressed: prevState.ctrlPressed || e.key === "Control",
+      shiftPressed: prevState.shiftPressed || e.key === "Shift",
+      altPressed: prevState.altPressed || e.key === "Alt",
+      keyPressCounter: prevState.keyPressCounter+1,
+      keyReleaseCounter: prevState.keyReleaseCounter
+      
     }));
   }
 
@@ -26,7 +31,9 @@ function useKeyboardInfo() {
       lastKeyReleased: e.key,
       ctrlPressed: prevState.ctrlPressed  && e.key !== "Control",
       shiftPressed: prevState.shiftPressed  && e.key !== "Shift",
-      altPressed: prevState.altPressed  && e.key !== "Alt"
+      altPressed: prevState.altPressed  && e.key !== "Alt",
+      keyPressCounter: prevState.keyPressCounter,
+      keyReleaseCounter: prevState.keyReleaseCounter+1
     }));
   }
 
