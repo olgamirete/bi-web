@@ -1,11 +1,8 @@
 import React from 'react';
 import './MetaCard.css';
-// import Border from './components/Border.js';
-// import Corner from './components/Corner.js';
 
 function MetaCard(props) {
 
-  // const eventHandlers = useCardEventHandlers(props.cardMethods, props.cardInfo.id);
   const selected = props.cardInfo.selected;
 
   return (
