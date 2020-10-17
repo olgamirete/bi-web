@@ -227,6 +227,32 @@ function useCards(controlFlags) {
     }
   }
 
+  function isCardInsideSelectionRect(cardPos, cardSize, rectProps) {
+    const rectPos = rectProps.pos;
+    const rectSize = rectProps.size;
+    const insideX = (cardPos.left >= rectPos.left) && (cardPos.left + cardSize.width <= rectPos.left + rectSize.width);
+    const insideY = (cardPos.top >= rectPos.top) && (cardPos.top + cardSize.height <= rectPos.top + rectSize.height);
+    return insideX && insideY;
+  }
+
+  function selectWithRectangle(rectangleProps) {
+    setCards(cards => {
+      let newCards = new Map(cards);
+      newCards.forEach(card => {
+        const flagSelect = isCardInsideSelectionRect(card.pos, card.size, rectangleProps);
+        newCards.set(card.id, {
+          id: card.id,
+          pos: card.pos,
+          size: card.size,
+          propsBeforeChange: card.propsBeforeChange,
+          selected: flagSelect,
+          flags: card.flags
+        });
+      });
+      return newCards;
+    });
+  }
+
   const cardMethods = {
     add: addNewCard,
     move: moveCard,
@@ -237,7 +263,8 @@ function useCards(controlFlags) {
     toggleSelect: toggleCardSelection,
     clearSelection: clearSelection,
     delete: deleteCard,
-    deleteSelected: deleteSelectedCards
+    deleteSelected: deleteSelectedCards,
+    selectWithRectangle: selectWithRectangle
   }
 
   return [cards, cardMethods];
