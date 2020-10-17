@@ -1,9 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './App.css';
 
 // Custom hooks-----------------------------------------------------------------
-// import usePointerInfo from './customHooks/usePointerInfo.js';
-import useKeyboardInfo from './customHooks/useKeyboardInfo.js';
 import useControls from './customHooks/useControls.js';
 import useCards from './customHooks/useCards.js';
 import useData from './customHooks/useData.js';
@@ -17,12 +15,9 @@ import DashboardContent from './components/dashboard-content/DashboardContent.js
 
 function App() {
 
-  const dashboardContentRef = useRef(null);
-
-  const keyboardInfo = useKeyboardInfo();
-  const controls = useControls(keyboardInfo);
+  const [controlFlags, controlMethods] = useControls();
   
-  const [cards, cardMethods] = useCards(controls.flags);
+  const [cards, cardMethods] = useCards(controlFlags);
   const [dataStructure, data] = useData();
 
   return (
@@ -31,21 +26,21 @@ function App() {
       
       <Controls
         cardMethods={cardMethods}
-        controls={controls} />
-      {/* <KeyboardData keyboardInfo={keyboardInfo} /> */}
+        controlFlags={controlFlags}
+        controlMethods={controlMethods} />
 
       <div className="container-for-side-panel-and-content">
         
         <SidePanel
-          flagShow={controls.flags.showSidePanel}
+          controlFlags={controlFlags}
+          controlMethods={controlMethods}
           dataStructure={dataStructure} />
         
         <DashboardContent
-          dashboardContentRef={dashboardContentRef}
-          keyboardInfo={keyboardInfo}
           cards={cards}
           cardMethods={cardMethods}
-          controlFlags={controls.flags}
+          controlFlags={controlFlags}
+          controlMethods={controlMethods}
           data={data} />
 
       </div>
