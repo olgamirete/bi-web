@@ -2,26 +2,32 @@ import React from 'react';
 import './Controls.css';
 
 function Controls(props) {
+  const testFunc = (e) => {
+    const dashboard = document.getElementById("dashboard-content");
+    // const dashboardRect = dashboard.getBoundingClientRect();
+    // alert(JSON.stringify(dashboardRect));
+    alert(dashboard.scrollWidth + " - " + dashboard.scrollHeight);
+  }
   return (
     <div className="controls">
       <button
-        style={{ width: "auto", height: 30 }}
-        onClick={props.controls.methods.toggleSidePanel}>Menu</button>
+        onClick={props.controlMethods.toggleSidePanel}>Toggle menu</button>
       <button
-        style={{ width: 30, height: 30 }}
+        alt="Toggle snap to grid"
+        className={props.controlFlags.snapToGrid ? "active" : ""}
+        onPointerDown={props.controlMethods.toggleSnapToGrid}>
+        Snap to grid
+      </button>
+      <button
+        alt="Toggle display grid"
+        className={props.controlFlags.displayGrid ? "active" : ""}
+        onPointerDown={props.controlMethods.toggleDisplayGrid}>
+        Display grid
+      </button>
+      <button
         onClick={() => props.cardMethods.add({ left: 100, top: 300 })}>+</button>
-      <input
-        type="checkbox"
-        alt="toggle snap to grid"
-        readOnly
-        checked={props.controls.flags.snapToGrid}
-        onPointerDown={props.controls.methods.toggleSnapToGrid} />Snap to grid
-      <input
-        type="checkbox"
-        alt="toggle display grid"
-        readOnly
-        checked={props.controls.flags.displayGrid}
-        onPointerDown={props.controls.methods.toggleDisplayGrid} />Display grid
+      <button
+        onClick={testFunc}>Test</button>
     </div>
   );
 }
