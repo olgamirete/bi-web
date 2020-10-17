@@ -213,7 +213,7 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
         }
       }
       if (allowMove || allowResize.width || allowResize.height) {
-        console.log("ran");
+        // console.log("ran");
         setDashboardScrollSize({
           width: dashboard.scrollWidth,
           height: dashboard.scrollHeight
