@@ -48,6 +48,8 @@
     border-width: 1px;
     border-right: none;
     border-color: #666666;
+    background-color: #777777;
+    color: #dddddd;
     
     padding: 0;
     margin-left: 0px;
@@ -55,22 +57,20 @@
     margin-top: 0px;
     margin-bottom: 0px;
     
-    background-color: #888888;
-    color: #dddddd;
     box-sizing: border-box;
+}
+
+.side-panel .buttons-container button:hover {
+    background-color: #888888;
+    border-color: #777777;
 }
 
 .side-panel .buttons-container button .text {
     transform: rotate(-90deg);
-    /* rotate: -90deg; */
     font-size: 14px;
     font-weight: 500;
 }
 
-.side-panel .buttons-container button:hover {
-    background-color: #777777;
-    border-color: #888888;
-}
 .side-panel .buttons-container button.active {
     background-color: #eeeeee;
     color: #666666;
@@ -89,7 +89,6 @@
 
 .side-panel .section {
     display: none;
-    /* background-color: chartreuse; */
     margin: 10px;
 }
 .side-panel .section .title {

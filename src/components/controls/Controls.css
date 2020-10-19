@@ -10,9 +10,6 @@
     box-sizing: border-box;
 }
 
-.controls .button.test {
-    background-color: chartreuse;
-}
 
 .controls .button {
     height: 30px;
@@ -22,9 +19,16 @@
     border-style: solid;
     border-width: 1px;
     color: #ffffff;
+    box-sizing: content-box;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
 }
 .controls .button:hover {
     background-color: rgb(102, 172, 199);
+    border-color: #f3ae19;
+    box-shadow: 0px 0px 3px 1px rgba(243,174,25,0.7);
 }
 .controls .button.active {
     background-color: rgb(46, 70, 80);
@@ -32,6 +36,15 @@
 }
 .controls .button:not(:last-child) {
     margin-right: 5px;
+}
+
+.controls .button.disabled {
+    background-color: #555555;
+    color: #333333;
+}
+.controls .button.disabled:hover {
+    background-color: #555555;
+    color: #333333;
 }
 
 .controls .textbox {
