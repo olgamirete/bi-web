@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Controls.css';
 
 function Controls(props) {
-  const [test, setTest] = useState(false);
-  const toggleTest = () => setTest(prevTest => !prevTest);
+  // const [test, setTest] = useState(false);
+  // const toggleTest = () => setTest(prevTest => !prevTest);
   return (
     <div className="controls">
       <button
-        className="button"
-        onClick={props.controlMethods.undo}>Undo</button>
+        className={"button" + (props.cardFlags.canUndo ? "" : " disabled")}
+        onPointerDown={props.cardMethods.undo}>Undo</button>
+      <button
+        className={"button" + (props.cardFlags.canRedo ? "" : " disabled")}
+        onPointerDown={props.cardMethods.redo}>Redo</button>
       <button
         className="button"
-        onClick={props.controlMethods.redo}>Redo</button>
-      <button
-        className="button"
-        onClick={props.controlMethods.toggleSidePanel}>Toggle menu</button>
+        onPointerDown={props.controlMethods.toggleSidePanel}>Toggle menu</button>
       <button
         alt="Toggle snap to grid"
         className={"button" + (props.controlFlags.snapToGrid ? " active" : "")}
@@ -34,8 +34,8 @@ function Controls(props) {
         className={"button" + (props.controlFlags.allowSelection ? " active" : "")}
         onPointerDown={props.controlMethods.toggleFlagAllowSelection}>Select</button>
       <button
-        className={"button" + (test ? " active" : "")}
-        onPointerDown={toggleTest}>Test</button>
+        className="button"
+        onPointerDown={props.cardMethods.deleteSelected}>Delete</button>
     </div>
   );
 }

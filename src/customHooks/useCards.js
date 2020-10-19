@@ -11,7 +11,11 @@ const DEFAULT_SIZE = { width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT };
 
 function useCards(controlFlags) {
 
-  const [cards, setCards] = useState(new Map());
+  const [cards, setCards] = useState({
+    past: [],
+    present: new Map(),
+    future: []
+  });
   // const [cardsPast, setCardsPast] = useState([]);
   // const [cardsFuture, setCardsFuture] = useState([]);
 
@@ -23,8 +27,8 @@ function useCards(controlFlags) {
       top: controlFlags.snapToGrid ? Math.round(newPos.top / GRID_UNIT_WIDTH, 0) * GRID_UNIT_WIDTH : newPos.top
     }
     setCards(cards => {
-      const prevCard = cards.get(cardId);
-      let newCards = new Map(cards);
+      const prevCard = cards.present.get(cardId);
+      let newCards = new Map(cards.present);
       newCards.set(cardId, {
         id: prevCard.id,
         pos: newPosControlled,
@@ -33,13 +37,17 @@ function useCards(controlFlags) {
         selected: prevCard.selected,
         flags: prevCard.flags
       });
-      return newCards;
+      return {
+        past: cards.past.concat([cards.present]),
+        present: newCards,
+        future: []
+      };
     });
   }, [controlFlags.snapToGrid]);
 
   const translateSelectedCards = useCallback((translation) => {
     setCards(cards => {
-      let newCards = new Map(cards);
+      let newCards = new Map(cards.present);
       newCards.forEach(card => {
         if (card.selected === true) {
           const posBeforeMove = card.propsBeforeChange.pos;
@@ -61,13 +69,17 @@ function useCards(controlFlags) {
           });
         }
       });
-      return newCards;
+      return {
+        past: cards.past, // we do not update the past until we fix the values of propsBeforeChange
+        present: newCards,
+        future: cards.future // we do not update the future until we fix the values of propsBeforeChange
+      };
     });
   }, [controlFlags.snapToGrid]);
 
   const resizeCard = useCallback((cardId, mouseTranslation, allowResize, anchor) => {
     setCards(cards => {
-      const prevCard = cards.get(cardId);
+      const prevCard = cards.present.get(cardId);
       const prevSize = prevCard.propsBeforeChange.size;
       const prevPos = prevCard.propsBeforeChange.pos;
 
@@ -103,8 +115,7 @@ function useCards(controlFlags) {
         height: nextHeightControlled
       }
 
-
-      let newCards = new Map(cards);
+      let newCards = new Map(cards.present);
       newCards.set(cardId, {
         id: prevCard.id,
         pos: nextPosControlled,
@@ -113,14 +124,18 @@ function useCards(controlFlags) {
         selected: prevCard.selected,
         flags: prevCard.flags
       });
-      return newCards;
+      return {
+        past: cards.past, // we do not update the past until we fix the values of propsBeforeChange
+        present: newCards,
+        future: cards.future // we do not update the future until we fix the values of propsBeforeChange
+      };
     });
   }, [controlFlags.snapToGrid]);
 
   const toggleCardSelection = useCallback((cardId) => {
     setCards(cards => {
-      const prevCard = cards.get(cardId);
-      let newCards = new Map(cards);
+      const prevCard = cards.present.get(cardId);
+      let newCards = new Map(cards.present);
       newCards.set(cardId, {
         id: prevCard.id,
         pos: prevCard.pos,
@@ -129,7 +144,11 @@ function useCards(controlFlags) {
         selected: !prevCard.selected,
         flags: prevCard.flags
       });
-      return newCards;
+      return {
+        past: cards.past, // no need to update the past when selecting a card
+        present: newCards,
+        future: cards.future // no need to update the future when selecting a card
+      };
     });
   }, []);
 
@@ -138,7 +157,7 @@ function useCards(controlFlags) {
       startingSize = DEFAULT_SIZE;
     }
     setCards(cards => {
-      let newCards = new Map(cards);
+      let newCards = new Map(cards.present);
       const cardId = "card-" + nextCardIndex;
       newCards.set(cardId, {
         id: cardId,
@@ -157,34 +176,48 @@ function useCards(controlFlags) {
           allowMove: false
         }
       });
-      return newCards;
+      return {
+        past: cards.past.concat([cards.present]),
+        present: newCards,
+        future: []
+      };
     });
     setNextCardIndex((prevState) => prevState + 1);
   }, [nextCardIndex]);
 
   const deleteCard = useCallback((cardId) => {
     setCards(cards => {
-      let newCards = new Map(cards);
+      let newCards = new Map(cards.present);
       newCards.delete(cardId);
-      return newCards;
+      return {
+        past: cards.past.concat([cards.present]),
+        present: newCards,
+        future: []
+      };
     });
   }, []);
 
   const deleteSelectedCards = useCallback(() => {
     setCards(cards => {
-      let newCards = new Map(cards);
+      let flagDeletedSomething = false;
+      let newCards = new Map(cards.present);
       newCards.forEach(card => {
         if (card.selected === true) {
           newCards.delete(card.id);
+          flagDeletedSomething = true;
         }
       });
-      return newCards;
+      return {
+        past: flagDeletedSomething ? cards.past.concat([cards.present]) : cards.past,
+        present: flagDeletedSomething ? newCards : cards.present,
+        future: flagDeletedSomething ? [] : cards.future
+      };
     });
   }, []);
 
   const __updatePropsBeforeChange = useCallback(() => {
     setCards(cards => {
-      let newCards = new Map(cards);
+      let newCards = new Map(cards.present);
       newCards.forEach(card => {
         newCards.set(card.id, {
           id: card.id,
@@ -198,13 +231,17 @@ function useCards(controlFlags) {
           flags: card.flags
         });
       });
-      return newCards;
+      return {
+        past: cards.past.concat([cards.present]),
+        present: newCards,
+        future: []
+      };
     });
   }, []);
 
   const clearSelection = useCallback(() => {
     setCards(cards => {
-      let newCards = new Map(cards);
+      let newCards = new Map(cards.present);
       newCards.forEach(card => {
         if (card.selected === true) {
           newCards.set(card.id, {
@@ -217,17 +254,21 @@ function useCards(controlFlags) {
           });
         }
       });
-      return newCards;
+      return {
+        past: cards.past, // no need to update the past when clearing the selection
+        present: newCards,
+        future: cards.future // no need to update the future when clearing the selection
+      };
     });
   }, []);
 
   const isCardSelected = useCallback((cardId) => {
-    if (cards.has(cardId) === true) {
-      return cards.get(cardId).selected;
+    if (cards.present.has(cardId) === true) {
+      return cards.present.get(cardId).selected;
     } else {
       return Error("cardId does not exist.");
     }
-  }, [cards]);
+  }, [cards.present]);
 
   const isCardInsideSelectionRect = useCallback((cardPos, cardSize, rectProps) => {
     const rectPos = rectProps.pos;
@@ -239,7 +280,7 @@ function useCards(controlFlags) {
 
   const selectWithRectangle = useCallback((rectangleProps, flagExpandCurrentSelection) => {
     setCards(cards => {
-      let newCards = new Map(cards);
+      let newCards = new Map(cards.present);
       newCards.forEach(card => {
         const flagSelect = isCardInsideSelectionRect(
           card.pos,
@@ -255,9 +296,34 @@ function useCards(controlFlags) {
           flags: card.flags
         });
       });
-      return newCards;
+      return {
+        past: cards.past, // no need to update the past when selecting cards
+        present: newCards,
+        future: cards.future // no need to update the future when selecting cards
+      };
     });
   }, [isCardInsideSelectionRect]);
+
+  const undo = useCallback(() => {
+    setCards(cards => ({
+      past: cards.past.length > 0 ? cards.past.slice(0, cards.past.length - 1) : cards.past,
+      present: cards.past.length > 0 ? cards.past[cards.past.length - 1] : cards.present,
+      future: cards.past.length > 0 ? cards.future.concat([cards.present]) : cards.future
+    }));
+  }, []);
+
+  const redo = useCallback(() => {
+    setCards(cards => ({
+      past: cards.future.length > 0 ? cards.past.concat([cards.present]) : cards.past,
+      present: cards.future.length > 0 ? cards.future[cards.future.length - 1] : cards.present,
+      future: cards.future.length > 0 ? cards.future.slice(0, cards.future.length - 1) : cards.future
+    }));
+  }, []);
+
+  const cardFlags = {
+    canUndo: cards.past.length > 0,
+    canRedo: cards.future.length > 0
+  }
 
   const cardMethods = {
     add: addNewCard,
@@ -270,9 +336,11 @@ function useCards(controlFlags) {
     clearSelection: clearSelection,
     delete: deleteCard,
     deleteSelected: deleteSelectedCards,
-    selectWithRectangle: selectWithRectangle
+    selectWithRectangle: selectWithRectangle,
+    undo: undo,
+    redo: redo
   }
 
-  return [cards, cardMethods];
+  return [cards.present, cardFlags, cardMethods];
 }
 export default useCards;
