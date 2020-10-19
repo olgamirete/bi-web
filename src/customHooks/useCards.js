@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 const GRID_UNIT_WIDTH = 20;
 const GRID_UNIT_HEIGHT = 20;
@@ -11,11 +11,13 @@ const DEFAULT_SIZE = { width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT };
 
 function useCards(controlFlags) {
 
-
   const [cards, setCards] = useState(new Map());
+  // const [cardsPast, setCardsPast] = useState([]);
+  // const [cardsFuture, setCardsFuture] = useState([]);
+
   const [nextCardIndex, setNextCardIndex] = useState(0);
 
-  function moveCard(cardId, newPos) {
+  const moveCard = useCallback((cardId, newPos) => {
     const newPosControlled = {
       left: controlFlags.snapToGrid ? Math.round(newPos.left / GRID_UNIT_WIDTH, 0) * GRID_UNIT_WIDTH : newPos.left,
       top: controlFlags.snapToGrid ? Math.round(newPos.top / GRID_UNIT_WIDTH, 0) * GRID_UNIT_WIDTH : newPos.top
@@ -33,9 +35,9 @@ function useCards(controlFlags) {
       });
       return newCards;
     });
-  }
+  }, [controlFlags.snapToGrid]);
 
-  function translateSelectedCards(translation) {
+  const translateSelectedCards = useCallback((translation) => {
     setCards(cards => {
       let newCards = new Map(cards);
       newCards.forEach(card => {
@@ -61,9 +63,9 @@ function useCards(controlFlags) {
       });
       return newCards;
     });
-  }
+  }, [controlFlags.snapToGrid]);
 
-  function resizeCard(cardId, mouseTranslation, allowResize, anchor) {
+  const resizeCard = useCallback((cardId, mouseTranslation, allowResize, anchor) => {
     setCards(cards => {
       const prevCard = cards.get(cardId);
       const prevSize = prevCard.propsBeforeChange.size;
@@ -113,9 +115,9 @@ function useCards(controlFlags) {
       });
       return newCards;
     });
-  }
+  }, [controlFlags.snapToGrid]);
 
-  function toggleCardSelection(cardId) {
+  const toggleCardSelection = useCallback((cardId) => {
     setCards(cards => {
       const prevCard = cards.get(cardId);
       let newCards = new Map(cards);
@@ -129,9 +131,9 @@ function useCards(controlFlags) {
       });
       return newCards;
     });
-  }
+  }, []);
 
-  const addNewCard = (startingPos, startingSize) => {
+  const addNewCard = useCallback((startingPos, startingSize) => {
     if (startingSize === undefined) {
       startingSize = DEFAULT_SIZE;
     }
@@ -158,17 +160,17 @@ function useCards(controlFlags) {
       return newCards;
     });
     setNextCardIndex((prevState) => prevState + 1);
-  }
+  }, [nextCardIndex]);
 
-  function deleteCard(cardId) {
+  const deleteCard = useCallback((cardId) => {
     setCards(cards => {
       let newCards = new Map(cards);
       newCards.delete(cardId);
       return newCards;
     });
-  }
+  }, []);
 
-  function deleteSelectedCards() {
+  const deleteSelectedCards = useCallback(() => {
     setCards(cards => {
       let newCards = new Map(cards);
       newCards.forEach(card => {
@@ -178,9 +180,9 @@ function useCards(controlFlags) {
       });
       return newCards;
     });
-  }
+  }, []);
 
-  function __updatePropsBeforeChange() {
+  const __updatePropsBeforeChange = useCallback(() => {
     setCards(cards => {
       let newCards = new Map(cards);
       newCards.forEach(card => {
@@ -198,9 +200,9 @@ function useCards(controlFlags) {
       });
       return newCards;
     });
-  }
+  }, []);
 
-  function clearSelection() {
+  const clearSelection = useCallback(() => {
     setCards(cards => {
       let newCards = new Map(cards);
       newCards.forEach(card => {
@@ -217,41 +219,45 @@ function useCards(controlFlags) {
       });
       return newCards;
     });
-  }
+  }, []);
 
-  function isCardSelected(cardId) {
+  const isCardSelected = useCallback((cardId) => {
     if (cards.has(cardId) === true) {
       return cards.get(cardId).selected;
     } else {
       return Error("cardId does not exist.");
     }
-  }
+  }, [cards]);
 
-  function isCardInsideSelectionRect(cardPos, cardSize, rectProps) {
+  const isCardInsideSelectionRect = useCallback((cardPos, cardSize, rectProps) => {
     const rectPos = rectProps.pos;
     const rectSize = rectProps.size;
     const insideX = (cardPos.left >= rectPos.left) && (cardPos.left + cardSize.width <= rectPos.left + rectSize.width);
     const insideY = (cardPos.top >= rectPos.top) && (cardPos.top + cardSize.height <= rectPos.top + rectSize.height);
     return insideX && insideY;
-  }
+  }, []);
 
-  function selectWithRectangle(rectangleProps) {
+  const selectWithRectangle = useCallback((rectangleProps, flagExpandCurrentSelection) => {
     setCards(cards => {
       let newCards = new Map(cards);
       newCards.forEach(card => {
-        const flagSelect = isCardInsideSelectionRect(card.pos, card.size, rectangleProps);
+        const flagSelect = isCardInsideSelectionRect(
+          card.pos,
+          card.size,
+          rectangleProps
+        );
         newCards.set(card.id, {
           id: card.id,
           pos: card.pos,
           size: card.size,
           propsBeforeChange: card.propsBeforeChange,
-          selected: flagSelect,
+          selected: flagExpandCurrentSelection ? (flagSelect || card.selected) : flagSelect,
           flags: card.flags
         });
       });
       return newCards;
     });
-  }
+  }, [isCardInsideSelectionRect]);
 
   const cardMethods = {
     add: addNewCard,
