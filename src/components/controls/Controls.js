@@ -1,33 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Controls.css';
 
 function Controls(props) {
-  const testFunc = (e) => {
-    const dashboard = document.getElementById("dashboard-content");
-    // const dashboardRect = dashboard.getBoundingClientRect();
-    // alert(JSON.stringify(dashboardRect));
-    alert(dashboard.scrollWidth + " - " + dashboard.scrollHeight);
-  }
+  const [test, setTest] = useState(false);
+  const toggleTest = () => setTest(prevTest => !prevTest);
   return (
     <div className="controls">
       <button
+        className="button"
+        onClick={props.controlMethods.undo}>Undo</button>
+      <button
+        className="button"
+        onClick={props.controlMethods.redo}>Redo</button>
+      <button
+        className="button"
         onClick={props.controlMethods.toggleSidePanel}>Toggle menu</button>
       <button
         alt="Toggle snap to grid"
-        className={props.controlFlags.snapToGrid ? "active" : ""}
+        className={"button" + (props.controlFlags.snapToGrid ? " active" : "")}
         onPointerDown={props.controlMethods.toggleSnapToGrid}>
         Snap to grid
       </button>
       <button
         alt="Toggle display grid"
-        className={props.controlFlags.displayGrid ? "active" : ""}
+        className={"button" + (props.controlFlags.displayGrid ? " active" : "")}
         onPointerDown={props.controlMethods.toggleDisplayGrid}>
         Display grid
       </button>
       <button
-        onClick={() => props.cardMethods.add({ left: 100, top: 300 })}>+</button>
+        className="button"
+        onPointerDown={() => props.cardMethods.add({ left: 100, top: 300 })}>+</button>
       <button
-        onClick={testFunc}>Test</button>
+        className={"button" + (props.controlFlags.allowSelection ? " active" : "")}
+        onPointerDown={props.controlMethods.toggleFlagAllowSelection}>Select</button>
+      <button
+        className={"button" + (test ? " active" : "")}
+        onPointerDown={toggleTest}>Test</button>
     </div>
   );
 }
