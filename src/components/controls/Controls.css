@@ -10,22 +10,43 @@
     box-sizing: border-box;
 }
 
-.controls button {
+.controls .button.test {
+    background-color: chartreuse;
+}
+
+.controls .button {
     height: 30px;
     background-color: rgb(87, 133, 151);
     border-radius: 3px;
     border-color: rgb(52, 79, 90);
     border-style: solid;
     border-width: 1px;
-    color: #ffffff
+    color: #ffffff;
 }
-.controls button:hover {
+.controls .button:hover {
     background-color: rgb(102, 172, 199);
 }
-.controls button.active {
+.controls .button.active {
     background-color: rgb(46, 70, 80);
     border-color: rgb(107, 158, 180);
 }
-.controls button:not(:last-of-type) {
+.controls .button:not(:last-child) {
     margin-right: 5px;
+}
+
+.controls .textbox {
+    display: inline-block;
+    height: 30px;
+    /* width: min-content; */
+    /* min-width: 30px; */
+    background-color: rgb(238, 238, 230);
+    border-radius: 3px;
+    border-color: rgb(52, 79, 90);
+    border-style: solid;
+    border-width: 1px;
+    color: rgb(52, 79, 90);
+    padding: 0;
+    padding-left: 7px;
+    padding-right: 7px;
+    text-align: center;
 }
