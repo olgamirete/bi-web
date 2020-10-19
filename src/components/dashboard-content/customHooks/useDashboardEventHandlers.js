@@ -1,9 +1,8 @@
 import { useEffect, useState, useCallback, useLayoutEffect } from 'react';
 
-function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
+function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, controlFlags) {
 
   // const cardContainer = document.getElementById(carId);
-
 
   const [allowResize, setAllowResize] = useState({ width: false, height: false });
   const [allowMove, setAllowMove] = useState(false);
@@ -19,10 +18,18 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
     size: { width: 0, height: 0 }
   });
   const [flagPointerDown, setFlagPointerDown] = useState(false);
-  const [dashboardScrollSize, setDashboardScrollSize] = useState({
-    width: "100%",
-    height: "100%"
-  })
+  // const [flagAllowRectangleSelect, setFlagAllowRectangleSelect] = useState(false);
+  // const setFlagAllowRectangleSelect = useCallback((newFlag) => {
+  //   controlMethods.setFlagAllowSelection(newFlag);
+  // }, []);
+  // const flagAllowRectangleSelect = controlFlags.allowSelection;
+  // const [flagIsLongPress, setFlagIsLongPress] = useState(false);
+  // const [flagWaitingLongPress, setFlagWaitingLongPress] = useState(false);
+  // const [timerLongPress, setTimerLongPress] = useState(null);
+  // const [dashboardScrollSize, setDashboardScrollSize] = useState({
+  //   width: "100%",
+  //   height: "100%"
+  // })
 
   // const dashboard = useMemo(() => {
   //   return document.getElementById(dashboardId);
@@ -140,13 +147,29 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
         if (e.ctrlKey === true) {
           const dashboardRect = dashboard.getBoundingClientRect();
           cardMethods.add({
-            left: e.pageX - dashboardRect.left+dashboard.scrollLeft,
-            top: e.pageY - dashboardRect.top+dashboard.scrollTop
+            left: e.pageX - dashboardRect.left + dashboard.scrollLeft,
+            top: e.pageY - dashboardRect.top + dashboard.scrollTop
           });
         } else {
-          // If no card was clicked, and if the ctrl key was not pressed, we can
-          // clear the selection.
-          cardMethods.clearSelection();
+          // If no card was clicked, and if the ctrl and shift keys were not
+          // pressed, we can clear the selection.
+          if (!e.shiftKey) {
+            cardMethods.clearSelection();
+          }
+
+          // if (e.pointerType === "touch") {
+          //   // e.preventDefault();
+          //   setFlagWaitingLongPress(true);
+          //   const timer = window.setTimeout(() => {
+          //     controlMethods.setFlagAllowSelection(true);
+          //   }, 400);
+          //   setTimerLongPress(timer);
+          // } else {
+          //   controlMethods.setFlagAllowSelection(true);
+          // }
+          if (e.pointerType !== "touch") {
+            controlMethods.setFlagAllowSelection(true);
+          }
         }
       }
     }
@@ -156,7 +179,8 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
     cardMethods, // Ok?
     dashboardId, // Ok
     setBorderCursorGlobalClass, // Ok?
-    containedInCardContainer // Ok
+    containedInCardContainer, // Ok
+    controlMethods // Ok?
   ]);
 
   // Pointer move
@@ -165,10 +189,12 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
     const dashboard = document.getElementById(dashboardId);
 
     const handlePointerMove = (e) => {
+      e.preventDefault();
       const translation = {
         x: e.pageX - lastClickedPos.x,
         y: e.pageY - lastClickedPos.y
       }
+      // const pointerTravelledDistance = Math.sqrt(translation.x * translation.x + translation.y * translation.y);
 
       if (allowMove) {
 
@@ -194,31 +220,42 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
           cardMethods.resize(lastContainerClicked.id, resizeTranslation, allowResize, anchor);
         } else {
           if (flagPointerDown) {
-            const dashboardRect = dashboard.getBoundingClientRect();
-            const newSelectionRectangleProps = {
-              flagDraw: true,
-              pos: {
-                left: Math.min(lastClickedPos.x, e.pageX) - dashboardRect.left+dashboard.scrollLeft,
-                top: Math.min(lastClickedPos.y, e.pageY) - dashboardRect.top+dashboard.scrollTop
-              },
-              size: {
-                width: Math.abs(e.pageX - lastClickedPos.x),
-                height: Math.abs(e.pageY - lastClickedPos.y)
-              }
-            };
-            // console.log(JSON.stringify(e.offsetX + "-" + e.offsetY));
-            setSelectionRectangleProps(newSelectionRectangleProps);
-            cardMethods.selectWithRectangle(newSelectionRectangleProps);
+            if (controlFlags.allowSelection) {
+              const dashboardRect = dashboard.getBoundingClientRect();
+              const newSelectionRectangleProps = {
+                flagDraw: true,
+                pos: {
+                  left: Math.min(lastClickedPos.x, e.pageX) - dashboardRect.left + dashboard.scrollLeft,
+                  top: Math.min(lastClickedPos.y, e.pageY) - dashboardRect.top + dashboard.scrollTop
+                },
+                size: {
+                  width: Math.abs(e.pageX - lastClickedPos.x),
+                  height: Math.abs(e.pageY - lastClickedPos.y)
+                }
+              };
+              // console.log(JSON.stringify(e.offsetX + "-" + e.offsetY));
+              setSelectionRectangleProps(newSelectionRectangleProps);
+              const flagExpandCurrentSelection = e.shiftKey;
+              cardMethods.selectWithRectangle(
+                newSelectionRectangleProps,
+                flagExpandCurrentSelection);
+            } //else {
+            //   if (e.pointerType === "touch" && flagWaitingLongPress && pointerTravelledDistance > 0) {
+            //     window.clearTimeout(timerLongPress);
+            //     setTimerLongPress(null);
+            //     setFlagWaitingLongPress(false);
+            //   }
+            // }
           }
         }
       }
-      if (allowMove || allowResize.width || allowResize.height) {
-        // console.log("ran");
-        setDashboardScrollSize({
-          width: dashboard.scrollWidth,
-          height: dashboard.scrollHeight
-        });
-      }
+      // if (allowMove || allowResize.width || allowResize.height) {
+      //   // console.log("ran");
+      //   setDashboardScrollSize({
+      //     width: dashboard.scrollWidth,
+      //     height: dashboard.scrollHeight
+      //   });
+      // }
     }
     dashboard.addEventListener("pointermove", handlePointerMove, false);
     return () => dashboard.removeEventListener("pointermove", handlePointerMove, false);
@@ -230,7 +267,10 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
     anchor, // ok
     lastClickedPos, // ok
     lastContainerClicked, // ok
-    flagPointerDown // ok
+    flagPointerDown, // ok
+    controlFlags.allowSelection // ok
+    //flagWaitingLongPress, // ok
+    //timerLongPress
   ]);
 
   // Pointer up
@@ -249,10 +289,21 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
         pos: { left: 0, top: 0 },
         size: { width: 0, height: 0 }
       });
+      // setFlagAllowRectangleSelect(false);
+      controlMethods.setFlagAllowSelection(false);
+      // if (e.pointerType === "touch" && timerLongPress !== null) {
+      //   window.clearTimeout(timerLongPress);
+      // }
     }
     dashboard.addEventListener("pointerup", handlePointerUp, false);
     return () => dashboard.removeEventListener("pointerup", handlePointerUp, false);
-  }, [cardMethods, dashboardId, clearBorderCursorGlobalClass]);
+  }, [
+    cardMethods, // Ok?
+    dashboardId, // Ok
+    clearBorderCursorGlobalClass, // Ok?
+    controlMethods // Ok?
+    //timerLongPress, // Ok?
+  ]);
 
   // Key down
   useEffect(() => {
@@ -330,12 +381,14 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods) {
   });
 
   const dashboardFlags = {
-    overrideHoverPointers: flagOverrideHoverPointers
+    overrideHoverPointers: flagOverrideHoverPointers,
+    allowRectangleSelect: controlFlags.allowSelection,
+    pointerDown: flagPointerDown
   }
   const dashboardProps = {
     debugInfo: debugInfo,
-    selectionRectangleProps: selectionRectangleProps,
-    scrollSize: dashboardScrollSize
+    selectionRectangleProps: selectionRectangleProps
+    // scrollSize: dashboardScrollSize
   }
 
   return [dashboardFlags, dashboardProps];
