@@ -14,18 +14,22 @@ function DashboardContent(props) {
   const [dashboardFlags, dashboardProps] = useDashboardEventHandlers(
     DASHBOARD_ID,
     props.cardMethods,
-    props.controlMethods);
+    props.controlMethods,
+    props.controlFlags);
 
   return (
     <div
       id={DASHBOARD_ID}
-      className="dashboard-content"
+      // onPointerDown={dashboardMethods.onPointerDown}
+      className={"dashboard-content" + (dashboardFlags.allowRectangleSelect ? " touch-action-none" : "")}
       ref={dashboardRef}>
       <Grid
         controlFlags={props.controlFlags}
-        dashboardRef={dashboardRef}
-        dashboardScrollSize={dashboardProps.scrollSize} />
+        controlProps={props.controlProps}
+        dashboardRef={dashboardRef} /> 
+        {/* dashboardScrollSize={dashboardProps.scrollSize} /> */}
       {/* <span className="debug-info">{dashboardProps.debugInfo}</span> */}
+      {/* <span className="debug-info">{"allow rect select: " + dashboardFlags.allowRectangleSelect}</span> */}
       {/* <span className="debug-info">{JSON.stringify(dashboardProps.scrollSize)}</span> */}
       {
         Array.from(props.cards.values()).map((cardInfo, i, arr) => {
