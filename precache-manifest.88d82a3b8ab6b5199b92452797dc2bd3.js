@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "15367a8a6388d14854ca98a591921e23",
+    "revision": "7e5b54d05e9524209650407a0866b755",
     "url": "/bi-web/index.html"
   },
   {
-    "revision": "2d0e9dfee920f267471d",
-    "url": "/bi-web/static/css/main.6196eceb.chunk.css"
+    "revision": "2ec5757cfe48e223df53",
+    "url": "/bi-web/static/css/main.995ffc7d.chunk.css"
   },
   {
     "revision": "edaa75e7d5d68ef51d05",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bi-web/static/js/2.ee41f74d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2d0e9dfee920f267471d",
-    "url": "/bi-web/static/js/main.054688bd.chunk.js"
+    "revision": "2ec5757cfe48e223df53",
+    "url": "/bi-web/static/js/main.d458b7b1.chunk.js"
   },
   {
     "revision": "ba6e68208be84447530f",
