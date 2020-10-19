@@ -17,7 +17,7 @@ function App() {
 
   const [controlFlags, controlMethods] = useControls();
   
-  const [cards, cardMethods] = useCards(controlFlags);
+  const [cards, cardFlags, cardMethods] = useCards(controlFlags);
   const [dataStructure, data] = useData();
 
   return (
@@ -25,6 +25,7 @@ function App() {
       className="App">
       
       <Controls
+        cardFlags={cardFlags}
         cardMethods={cardMethods}
         controlFlags={controlFlags}
         controlMethods={controlMethods} />
