@@ -5,19 +5,42 @@ function useControls() {
   const [flagShowSidePanel, setFlagShowSidePanel] = useState(true);
   const [flagSnapToGrid, setFlagSnapToGrid] = useState(false);
   const [flagDisplayGrid, setFlagDisplayGrid] = useState(true);
+  const [flagAllowSelection, setFlagAllowSelection] = useState(false);
+  // const [gridSize, setGridSize] = useState({
+  //   width: "100%",
+  //   height: "100%"
+  // })
   // const [lockGridSetting, setLockGridSetting] = useState(false);
 
-  const toggleSidePanel = () => {
-    setFlagShowSidePanel(!flagShowSidePanel);
-  }
+  const toggleSidePanel = useCallback(() => {
+    setFlagShowSidePanel(prevFlag => !prevFlag);
+  }, []);
 
-  const toggleSnapToGrid = useCallback((e) => {
-    setFlagSnapToGrid(!flagSnapToGrid);
-  }, [flagSnapToGrid]);
+  const toggleSnapToGrid = useCallback(() => {
+    setFlagSnapToGrid(prevFlag => !prevFlag);
+  }, []);
 
-  const toggleDisplayGrid = useCallback((e) => {
-    setFlagDisplayGrid(!flagDisplayGrid);
-  }, [flagDisplayGrid]);
+  const toggleDisplayGrid = useCallback(() => {
+    setFlagDisplayGrid(prevFlag => !prevFlag);
+  }, []);
+
+  const toggleFlagAllowSelection = useCallback(() => {
+    setFlagAllowSelection(prevFlag => !prevFlag);
+  }, []);
+
+  // const setGridWidth = useCallback((newWidth) => {
+  //   setGridSize(prevSize => ({
+  //     width: newWidth,
+  //     height: prevSize.height
+  //   }));
+  // }, []);
+
+  // const setGridHeight = useCallback((newHeight) => {
+  //   setGridSize(prevSize => ({
+  //     width: prevSize.width,
+  //     height: newHeight
+  //   }));
+  // }, []);
 
 
   // // Handle Alt key press and release.------------------------------------------
@@ -41,13 +64,22 @@ function useControls() {
   const controlFlags = {
     showSidePanel: flagShowSidePanel,
     snapToGrid: flagSnapToGrid,
-    displayGrid: flagDisplayGrid
+    displayGrid: flagDisplayGrid,
+    allowSelection: flagAllowSelection
   };
+  // const controlProps = {
+  //   gridSize: gridSize
+  // }
   const controlMethods = {
     setFlagShowSidePanel: setFlagShowSidePanel,
     toggleSidePanel: toggleSidePanel,
     toggleSnapToGrid: toggleSnapToGrid,
-    toggleDisplayGrid: toggleDisplayGrid
+    toggleDisplayGrid: toggleDisplayGrid,
+    toggleFlagAllowSelection: toggleFlagAllowSelection,
+    setFlagAllowSelection: setFlagAllowSelection,
+    // setGridSize: setGridSize,
+    // setGridWidth: setGridWidth,
+    // setGridHeight: setGridHeight
   };
 
   return [controlFlags, controlMethods];
