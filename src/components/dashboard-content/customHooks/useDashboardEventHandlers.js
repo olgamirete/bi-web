@@ -1,5 +1,7 @@
 import { useEffect, useState, useCallback, useLayoutEffect } from 'react';
 
+const SELECTION_RECT_BORDER_WIDTH = 2;
+
 function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, controlFlags) {
 
   // const cardContainer = document.getElementById(carId);
@@ -15,7 +17,8 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, con
   const [selectionRectangleProps, setSelectionRectangleProps] = useState({
     flagDraw: false,
     pos: { left: 0, top: 0 },
-    size: { width: 0, height: 0 }
+    size: { width: 0, height: 0 },
+    borderWidth: SELECTION_RECT_BORDER_WIDTH
   });
   const [flagPointerDown, setFlagPointerDown] = useState(false);
   // const [flagAllowRectangleSelect, setFlagAllowRectangleSelect] = useState(false);
@@ -225,13 +228,14 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, con
               const newSelectionRectangleProps = {
                 flagDraw: true,
                 pos: {
-                  left: Math.min(lastClickedPos.x, e.pageX) - dashboardRect.left + dashboard.scrollLeft,
-                  top: Math.min(lastClickedPos.y, e.pageY) - dashboardRect.top + dashboard.scrollTop
+                  left: Math.min(lastClickedPos.x, e.pageX) - dashboardRect.left + dashboard.scrollLeft+SELECTION_RECT_BORDER_WIDTH,
+                  top: Math.min(lastClickedPos.y, e.pageY) - dashboardRect.top + dashboard.scrollTop+SELECTION_RECT_BORDER_WIDTH
                 },
                 size: {
-                  width: Math.abs(e.pageX - lastClickedPos.x),
-                  height: Math.abs(e.pageY - lastClickedPos.y)
-                }
+                  width: Math.abs(e.pageX - lastClickedPos.x)-SELECTION_RECT_BORDER_WIDTH,
+                  height: Math.abs(e.pageY - lastClickedPos.y)-SELECTION_RECT_BORDER_WIDTH
+                },
+                borderWidth: SELECTION_RECT_BORDER_WIDTH
               };
               // console.log(JSON.stringify(e.offsetX + "-" + e.offsetY));
               setSelectionRectangleProps(newSelectionRectangleProps);
@@ -287,7 +291,8 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, con
       setSelectionRectangleProps({
         flagDraw: false,
         pos: { left: 0, top: 0 },
-        size: { width: 0, height: 0 }
+        size: { width: 0, height: 0 },
+        borderWidth: SELECTION_RECT_BORDER_WIDTH
       });
       // setFlagAllowRectangleSelect(false);
       controlMethods.setFlagAllowSelection(false);

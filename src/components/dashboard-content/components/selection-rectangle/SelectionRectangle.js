@@ -10,7 +10,8 @@ function SelectionRectangle(props) {
                 left: props.selRectInfo.pos.left,
                 top: props.selRectInfo.pos.top,
                 width: props.selRectInfo.size.width,
-                height: props.selRectInfo.size.height}}>
+                height: props.selRectInfo.size.height,
+                borderWidth: props.selRectInfo.borderWidth}}>
         </div>
     );
 }

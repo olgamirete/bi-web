@@ -271,8 +271,14 @@ function useCards(controlFlags) {
   }, [cards.present]);
 
   const isCardInsideSelectionRect = useCallback((cardPos, cardSize, rectProps) => {
-    const rectPos = rectProps.pos;
-    const rectSize = rectProps.size;
+    const rectPos = {
+      left: rectProps.pos.left+rectProps.borderWidth,
+      top: rectProps.pos.top+rectProps.borderWidth
+    }
+    const rectSize = {
+      width: rectProps.size.width-rectProps.borderWidth,
+      height: rectProps.size.height-rectProps.borderWidth
+    }
     const insideX = (cardPos.left >= rectPos.left) && (cardPos.left + cardSize.width <= rectPos.left + rectSize.width);
     const insideY = (cardPos.top >= rectPos.top) && (cardPos.top + cardSize.height <= rectPos.top + rectSize.height);
     return insideX && insideY;

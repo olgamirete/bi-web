@@ -2,7 +2,7 @@
     position: absolute;
     border-style: dashed;
     border-color: #5e67dd;
-    border-width: 2px;
+    /* border-width: 2px; */
     z-index: 9999;
 }
 
