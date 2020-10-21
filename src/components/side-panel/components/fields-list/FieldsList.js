@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FieldsList.css';
+import FieldItem from './field-item/FieldItem.js';
 
 function FieldsList(props) {
 
@@ -25,14 +26,10 @@ function FieldsList(props) {
       <ul className={"fields-list" + (flagExpanded ? "" : " hidden")}>
         {
           props.tableStructure.fields.map((field, i, arr) => {
-            return (
-              <li
-                key={i}
-                id={"table-" + props.tableStructure.id + "-field-" + field}
-                className="field-item">
-                {field}
-              </li>
-            );
+            return <FieldItem
+              key={i}
+              tableId={props.tableStructure.id}
+              fieldName={field} />
           })
         }
       </ul>
