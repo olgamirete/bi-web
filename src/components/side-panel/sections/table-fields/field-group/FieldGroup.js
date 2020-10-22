@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './FieldsList.css';
+import './FieldGroup.css';
 import FieldItem from './field-item/FieldItem.js';
 
-function FieldsList(props) {
+function FieldGroup(props) {
 
   const [flagExpanded, setFlagExpanded] = useState(false);
 
@@ -12,7 +12,7 @@ function FieldsList(props) {
   }
 
   return (
-    <section className="table-fields-section">
+    <div className="table-fields-section">
       <div className="container-button-and-title">
         <button
           className="button-expand-collapse"
@@ -33,8 +33,8 @@ function FieldsList(props) {
           })
         }
       </ul>
-    </section>
-  )
+    </div>
+  );
 }
 
-export default FieldsList;
+export default FieldGroup;

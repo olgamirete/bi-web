@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './SidePanel.css';
-import FieldsList from './components/fields-list/FieldsList.js';
+// import FieldsList from './components/fields-list/FieldsList.js';
+import TableFields from './sections/table-fields/TableFields.js';
+import CardFormat from './sections/card-format/CardFormat.js';
+import Other from './sections/other/Other.js';
 
 function SidePanel(props) {
 
@@ -44,22 +47,9 @@ function SidePanel(props) {
       </div>
 
       <div className="sections-container">
-        <section className={"section" + (activeSection === "fields" ? " active" : "")}>
-          <h3 className="title">Fields</h3>
-          {
-            Array.from(props.dataStructure.values()).map((tableStructure, i, arr) => {
-              return <FieldsList key={i} tableStructure={tableStructure} />
-            })
-          }
-        </section>
-        <section className={"section" + (activeSection === "format" ? " active" : "")}>
-          <h3 className="title">Format</h3>
-          Format options
-        </section>
-        <section className={"section" + (activeSection === "other" ? " active" : "")}>
-          <h3 className="title">Other</h3>
-          Other
-        </section>
+        <TableFields activeSection={activeSection} dataStructure={props.dataStructure} />
+        <CardFormat activeSection={activeSection} />
+        <Other activeSection={activeSection} />
       </div>
     </div>
   );
