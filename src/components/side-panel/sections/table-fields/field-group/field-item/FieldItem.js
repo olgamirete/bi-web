@@ -2,9 +2,6 @@ import React from 'react';
 import './FieldItem.css';
 
 function FieldItem(props) {
-  // const handlerPointerDown = (e) => {
-  //   e.preventDefault();
-  // }
   return (
     <li
       // key={props.key}
