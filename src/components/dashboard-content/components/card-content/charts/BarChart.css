@@ -29,3 +29,7 @@
     stroke-linejoin:round;
     stroke-opacity:1
 }
+
+.bar-chart text {
+    fill: #ffffff;
+}
