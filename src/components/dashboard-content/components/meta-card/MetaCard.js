@@ -14,6 +14,8 @@ function Contents(props) {
       return <PieChart {...props}/>
     case "linechart":
       return <LineChart {...props}/>  
+      case "barchart2":
+        return <BarChart2 {...props}/> 
     default:
       // return <div>empty</div>
       return <BarChart {...props}/>
