@@ -18,6 +18,10 @@ function CardFormat(props) {
             onPointerDown={() => props.cardMethods.setContentTypeOfSelectedCards("linechart")} >
             Line chart
           </button>
+          <button
+            onPointerDown={() => props.cardMethods.setContentTypeOfSelectedCards("barchart2")} >
+            Bar chart 2
+          </button>
           <h4>Set chart options</h4>
           <button
             onPointerDown={props.cardMethods.toggleSelectedCardsLegend} >
