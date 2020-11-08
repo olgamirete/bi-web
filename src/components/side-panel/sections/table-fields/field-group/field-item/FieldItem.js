@@ -5,9 +5,13 @@ function FieldItem(props) {
   return (
     <li
       // key={props.key}
-      id={"table-" + props.tableId + "-field-" + props.fieldName}
-      className="field-item">
-      {props.fieldName}
+      className="field-item"
+      draggable="true" >
+      <span
+        id={"table-" + props.tableId + "-field-" + props.fieldName}
+        draggable="true">
+          {props.fieldName}
+      </span>
     </li>
   );
 }
