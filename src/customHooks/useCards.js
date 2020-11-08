@@ -5,8 +5,8 @@ const GRID_UNIT_HEIGHT = 20;
 
 const MIN_WIDHT = GRID_UNIT_WIDTH * 2;
 const MIN_HEIGHT = GRID_UNIT_HEIGHT * 2;
-const DEFAULT_WIDTH = GRID_UNIT_WIDTH * 3 * 2;
-const DEFAULT_HEIGHT = GRID_UNIT_HEIGHT * 3 * 3;
+const DEFAULT_WIDTH = GRID_UNIT_WIDTH * 3 * 8;
+const DEFAULT_HEIGHT = GRID_UNIT_HEIGHT * 3 * 5;
 const DEFAULT_SIZE = { width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT };
 
 function useCards(controlFlags) {
