@@ -30,8 +30,6 @@ function DashboardContent(props) {
         controlProps={props.controlProps}
         dashboardRef={dashboardRef} /> 
         {/* dashboardScrollSize={dashboardProps.scrollSize} /> */}
-      {/* <span className="debug-info">{dashboardProps.debugInfo}</span> */}
-      {/* <span className="debug-info">{"allow rect select: " + dashboardFlags.allowRectangleSelect}</span> */}
       {/* <span className="debug-info">{JSON.stringify(dashboardProps.scrollSize)}</span> */}
       {
         Array.from(props.cards.values()).map((cardInfo, i, arr) => {
