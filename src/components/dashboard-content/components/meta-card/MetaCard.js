@@ -3,6 +3,7 @@ import './MetaCard.css';
 import BarChart from '../card-content/charts/BarChart.js';
 import PieChart from '../card-content/charts/PieChart.js';
 import LineChart from '../card-content/charts/LineChart.js';
+import BarChart2 from '../card-content/charts/BarChart2.js';
 
 const METACARD_BORDER_WIDTH = 1;
 
