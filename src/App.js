@@ -35,7 +35,8 @@ function App() {
         <SidePanel
           controlFlags={controlFlags}
           controlMethods={controlMethods}
-          dataStructure={dataStructure} />
+          dataStructure={dataStructure}
+          cardMethods={cardMethods} />
         
         <DashboardContent
           cards={cards}
