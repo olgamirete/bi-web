@@ -24,3 +24,4 @@ yarn-error.log*
 
 # test data
 /src/testData
+/svg_chart_drafts
