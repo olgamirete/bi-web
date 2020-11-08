@@ -1,5 +1,25 @@
 import React from 'react';
 import './MetaCard.css';
+import BarChart from '../card-content/charts/BarChart.js';
+import PieChart from '../card-content/charts/PieChart.js';
+import LineChart from '../card-content/charts/LineChart.js';
+
+const METACARD_BORDER_WIDTH = 1;
+
+function Contents(props) {
+  switch (props.cardInfo.type) {
+    case "barchart":
+      return <BarChart {...props}/>
+    case "piechart":
+      return <PieChart {...props}/>
+    case "linechart":
+      return <LineChart {...props}/>  
+    default:
+      // return <div>empty</div>
+      return <BarChart {...props}/>
+      // break;
+  }
+}
 
 function MetaCard(props) {
 
