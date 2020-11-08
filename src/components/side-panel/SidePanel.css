@@ -99,3 +99,8 @@
 .side-panel .section.active {
     display: block;
 }
+
+.side-panel .section h4 {
+    font-size: 15px;
+    margin: 0;
+}
