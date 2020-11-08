@@ -7,14 +7,14 @@ function Controls(props) {
   return (
     <div className="controls">
       <button
+        className="button"
+        onPointerDown={props.controlMethods.toggleSidePanel}>Toggle menu</button>
+      <button
         className={"button" + (props.cardFlags.canUndo ? "" : " disabled")}
         onPointerDown={props.cardMethods.undo}>Undo</button>
       <button
         className={"button" + (props.cardFlags.canRedo ? "" : " disabled")}
         onPointerDown={props.cardMethods.redo}>Redo</button>
-      <button
-        className="button"
-        onPointerDown={props.controlMethods.toggleSidePanel}>Toggle menu</button>
       <button
         alt="Toggle snap to grid"
         className={"button" + (props.controlFlags.snapToGrid ? " active" : "")}
