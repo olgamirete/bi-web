@@ -29,7 +29,7 @@ function Controls(props) {
       </button>
       <button
         className="button"
-        onPointerDown={() => props.cardMethods.add({ left: 100, top: 300 })}>+</button>
+        onPointerDown={() => props.cardMethods.add({ pos: { left: 20, top: 20 } })}>+</button>
       <button
         className={"button" + (props.controlFlags.allowSelection ? " active" : "")}
         onPointerDown={props.controlMethods.toggleFlagAllowSelection}>Select</button>
