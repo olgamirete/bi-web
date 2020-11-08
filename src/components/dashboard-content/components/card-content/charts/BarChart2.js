@@ -41,7 +41,10 @@ function BarChart2(props) {
   // const xMax = 10;
   
   return (
-    <BarChartRecharts width={chartWidth} height={chartHeight} data={data}>
+    <BarChartRecharts
+      width={chartWidth}
+      height={chartHeight}
+      data={data} >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
