@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './SidePanel.css';
-// import FieldsList from './components/fields-list/FieldsList.js';
 import TableFields from './sections/table-fields/TableFields.js';
 import CardFormat from './sections/card-format/CardFormat.js';
 import Other from './sections/other/Other.js';
@@ -48,7 +47,7 @@ function SidePanel(props) {
 
       <div className="sections-container">
         <TableFields activeSection={activeSection} dataStructure={props.dataStructure} />
-        <CardFormat activeSection={activeSection} />
+        <CardFormat activeSection={activeSection} cardMethods={props.cardMethods} />
         <Other activeSection={activeSection} />
       </div>
     </div>
