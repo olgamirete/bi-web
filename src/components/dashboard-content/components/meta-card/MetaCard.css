@@ -5,7 +5,7 @@
     display: flex;
     flex-flow: row nowrap;
     touch-action: none;
-    box-sizing: content-box;
+    /* box-sizing: border-box; */
     z-index: 0;
   }
   
@@ -27,7 +27,8 @@
     overflow: hidden;
     background-color: #dbdbdb;
     /* Border */
-    margin: -1px;
+    box-sizing: border-box;
+    margin: 0px;
     border-style: solid;
     border-width: 1px;
     border-color: #bebebe;
