@@ -1,3 +1,24 @@
+:root {
+  /* CSS HEX */
+  /* --oxford-blue: #02182bff;
+  --cg-blue: #2d80a1ff;
+  --queen-pink: #eac5d8ff;
+  --rose-taupe: #8b575cff;
+  --vivid-burgundy: #a61c3cff;
+  --dark-red: #92140cff;
+  --sunglow: #ffd23fff;
+  --mountain-meadow: #09bc8aff; */
+  --bw-blue-dark: #02182bff;
+  --bw-blue-light: #2d80a1ff;
+  --bw-pink-light: #eac5d8ff;
+  --bw-pink-dark: #8b575cff;
+  --bw-pink: #a61c3cff;
+  --bw-red: #92140cff;
+  --bw-yellow: #ffd23fff;
+  --bw-green: #09bc8aff;
+  /* https://coolors.co/02182b-2d80a1-eac5d8-8b575c-a61c3c-92140c-ffd23f-09bc8a */
+}
+
 .App {
   position: relative;
   display: block;
