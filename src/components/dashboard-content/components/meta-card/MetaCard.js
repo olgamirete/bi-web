@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './MetaCard.css';
 import BarChart from '../card-content/charts/BarChart.js';
 import PieChart from '../card-content/charts/PieChart.js';
@@ -7,24 +7,24 @@ import BarChart2 from '../card-content/charts/BarChart2.js';
 
 const METACARD_BORDER_WIDTH = 1;
 
-function Contents(props) {
-  switch (props.cardInfo.type) {
-    case "barchart":
-      return <BarChart {...props}/>
-    case "piechart":
-      return <PieChart {...props}/>
-    case "linechart":
-      return <LineChart {...props}/>  
+function MetaCard(props) {
+
+  const Contents = useCallback((props) => {
+    switch (props.cardInfo.type) {
+      case "barchart":
+        return <BarChart {...props}/>
+      case "piechart":
+        return <PieChart {...props}/>
+      case "linechart":
+        return <LineChart {...props}/>
       case "barchart2":
         return <BarChart2 {...props}/> 
-    default:
-      // return <div>empty</div>
-      return <BarChart {...props}/>
-      // break;
-  }
-}
-
-function MetaCard(props) {
+      default:
+        // return <div>empty</div>
+        return <BarChart {...props}/>
+        // break;
+    }
+  }, []);
 
   const selected = props.cardInfo.selected;
 
