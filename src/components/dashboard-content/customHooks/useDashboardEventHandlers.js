@@ -1,10 +1,8 @@
 import { useEffect, useState, useCallback, useLayoutEffect } from 'react';
 
-const SELECTION_RECT_BORDER_WIDTH = 2;
+// const SELECTION_RECT_BORDER_WIDTH = 2;
 
-function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, controlFlags) {
-
-  // const cardContainer = document.getElementById(carId);
+function useDashboardEventHandlers(dashboardId, selRectBorderWidth, cardMethods, controlMethods, controlFlags) {
 
   const [allowResize, setAllowResize] = useState({ width: false, height: false });
   const [allowMove, setAllowMove] = useState(false);
@@ -18,7 +16,7 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, con
     flagDraw: false,
     pos: { left: 0, top: 0 },
     size: { width: 0, height: 0 },
-    borderWidth: SELECTION_RECT_BORDER_WIDTH
+    borderWidth: selRectBorderWidth
   });
   const [flagPointerDown, setFlagPointerDown] = useState(false);
   // const [flagAllowRectangleSelect, setFlagAllowRectangleSelect] = useState(false);
@@ -150,8 +148,10 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, con
         if (e.ctrlKey === true) {
           const dashboardRect = dashboard.getBoundingClientRect();
           cardMethods.add({
-            left: e.pageX - dashboardRect.left + dashboard.scrollLeft,
-            top: e.pageY - dashboardRect.top + dashboard.scrollTop
+            pos: {
+              left: e.pageX - dashboardRect.left + dashboard.scrollLeft,
+              top: e.pageY - dashboardRect.top + dashboard.scrollTop
+            }
           });
         } else {
           // If no card was clicked, and if the ctrl and shift keys were not
@@ -228,14 +228,14 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, con
               const newSelectionRectangleProps = {
                 flagDraw: true,
                 pos: {
-                  left: Math.min(lastClickedPos.x, e.pageX) - dashboardRect.left + dashboard.scrollLeft+SELECTION_RECT_BORDER_WIDTH,
-                  top: Math.min(lastClickedPos.y, e.pageY) - dashboardRect.top + dashboard.scrollTop+SELECTION_RECT_BORDER_WIDTH
+                  left: Math.round(Math.min(lastClickedPos.x, e.pageX) - dashboardRect.left + dashboard.scrollLeft, 0),
+                  top: Math.round(Math.min(lastClickedPos.y, e.pageY) - dashboardRect.top + dashboard.scrollTop, 0)
                 },
                 size: {
-                  width: Math.abs(e.pageX - lastClickedPos.x)-SELECTION_RECT_BORDER_WIDTH,
-                  height: Math.abs(e.pageY - lastClickedPos.y)-SELECTION_RECT_BORDER_WIDTH
+                  width: Math.round(Math.abs(e.pageX - lastClickedPos.x), 0),
+                  height: Math.round(Math.abs(e.pageY - lastClickedPos.y), 0)
                 },
-                borderWidth: SELECTION_RECT_BORDER_WIDTH
+                borderWidth: selRectBorderWidth
               };
               // console.log(JSON.stringify(e.offsetX + "-" + e.offsetY));
               setSelectionRectangleProps(newSelectionRectangleProps);
@@ -272,7 +272,8 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, con
     lastClickedPos, // ok
     lastContainerClicked, // ok
     flagPointerDown, // ok
-    controlFlags.allowSelection // ok
+    controlFlags.allowSelection, // ok
+    selRectBorderWidth // ok?
     //flagWaitingLongPress, // ok
     //timerLongPress
   ]);
@@ -292,7 +293,7 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, con
         flagDraw: false,
         pos: { left: 0, top: 0 },
         size: { width: 0, height: 0 },
-        borderWidth: SELECTION_RECT_BORDER_WIDTH
+        borderWidth: selRectBorderWidth
       });
       // setFlagAllowRectangleSelect(false);
       controlMethods.setFlagAllowSelection(false);
@@ -306,7 +307,8 @@ function useDashboardEventHandlers(dashboardId, cardMethods, controlMethods, con
     cardMethods, // Ok?
     dashboardId, // Ok
     clearBorderCursorGlobalClass, // Ok?
-    controlMethods // Ok?
+    controlMethods, // Ok?
+    selRectBorderWidth // ok?
     //timerLongPress, // Ok?
   ]);
 

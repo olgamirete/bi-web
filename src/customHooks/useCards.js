@@ -272,15 +272,15 @@ function useCards(controlFlags) {
 
   const isCardInsideSelectionRect = useCallback((cardPos, cardSize, rectProps) => {
     const rectPos = {
-      left: rectProps.pos.left+rectProps.borderWidth,
-      top: rectProps.pos.top+rectProps.borderWidth
+      left: rectProps.pos.left,
+      top: rectProps.pos.top
     }
     const rectSize = {
-      width: rectProps.size.width-rectProps.borderWidth,
-      height: rectProps.size.height-rectProps.borderWidth
+      width: Math.max(rectProps.size.width, 0),
+      height: Math.max(rectProps.size.height, 0)
     }
-    const insideX = (cardPos.left >= rectPos.left) && (cardPos.left + cardSize.width <= rectPos.left + rectSize.width);
-    const insideY = (cardPos.top >= rectPos.top) && (cardPos.top + cardSize.height <= rectPos.top + rectSize.height);
+    const insideX = (cardPos.left >= rectPos.left + rectProps.borderWidth) && (cardPos.left + cardSize.width <= rectPos.left + rectProps.borderWidth + rectSize.width - 2 * rectProps.borderWidth);
+    const insideY = (cardPos.top >= rectPos.top + rectProps.borderWidth) && (cardPos.top + cardSize.height <= rectPos.top + rectProps.borderWidth + rectSize.height - 2 * rectProps.borderWidth);
     return insideX && insideY;
   }, []);
 
@@ -293,13 +293,8 @@ function useCards(controlFlags) {
           card.size,
           rectangleProps
         );
-        newCards.set(card.id, {
-          id: card.id,
-          pos: card.pos,
-          size: card.size,
-          propsBeforeChange: card.propsBeforeChange,
-          selected: flagExpandCurrentSelection ? (flagSelect || card.selected) : flagSelect,
-          flags: card.flags
+        updateCardInfo(newCards, card.id, {
+          selected: flagExpandCurrentSelection ? (flagSelect || card.selected) : flagSelect
         });
       });
       return {
@@ -308,7 +303,7 @@ function useCards(controlFlags) {
         future: cards.future // no need to update the future when selecting cards
       };
     });
-  }, [isCardInsideSelectionRect]);
+  }, [isCardInsideSelectionRect, updateCardInfo]);
 
   const undo = useCallback(() => {
     setCards(cards => ({

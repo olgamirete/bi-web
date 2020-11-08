@@ -23,13 +23,15 @@ function MetaCard(props) {
       <div className="col-container">
         <div className="border horizontal top" data-anchor={{ right: false, bottom: true }}></div>
 
-        {/* {props.children} */}
         <div
           className="content"
           style={{
             width: props.cardInfo.size.width + "px",
-            height: props.cardInfo.size.height + "px"
+            height: props.cardInfo.size.height + "px",
+            borderWidth: METACARD_BORDER_WIDTH
           }}>
+            <Contents {...props} borderWidth={METACARD_BORDER_WIDTH} />
+          {/* {props.children} */}
           {/* {"Debug info: " + debugInfo} */}
           {/* {"controller index: " + controllerPointerIndex} */}
         </div>

@@ -2,7 +2,11 @@
     position: absolute;
     border-style: dashed;
     border-color: #5e67dd;
-    /* border-width: 2px; */
+    border-color: #8c93e9;
+    /* border-width: 2px; */ /* Cannot be set here, because its passed as a prop */
+    border-width: 2px;
+    /* margin: -2px; */
+    box-sizing: border-box;
     z-index: 9999;
 }
 

@@ -6,6 +6,7 @@ import SelectionRectangle from './components/selection-rectangle/SelectionRectan
 import Grid from './components/grid/Grid.js';
 
 const DASHBOARD_ID = "dashboard-content";
+const SELRECT_BORDERWIDTH = 2;
 
 function DashboardContent(props) {
 
@@ -13,6 +14,7 @@ function DashboardContent(props) {
 
   const [dashboardFlags, dashboardProps] = useDashboardEventHandlers(
     DASHBOARD_ID,
+    SELRECT_BORDERWIDTH,
     props.cardMethods,
     props.controlMethods,
     props.controlFlags);
