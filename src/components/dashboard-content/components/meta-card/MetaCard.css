@@ -17,7 +17,7 @@
 
   
   .resizeable-card-container.animate-all {
-    /* transition: all 0.05s ease-in; */
+    transition: all 0.05s ease-in;
   }
   
   .resizeable-card-container.selected {

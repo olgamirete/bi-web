@@ -49,7 +49,7 @@ function MetaCard(props) {
   return (
     <div
       id={props.cardInfo.id}
-      className={"resizeable-card-container" + (selected ? " selected" : "") + (props.controlFlags.snapToGrid ? " animate-all" : "") + (props.dashboardFlags.overrideHoverPointers ? " unset-cursors" : "") + (flagExpectDrop ? " receiving-drop" : "")}
+      className={"resizeable-card-container" + (selected ? " selected" : "") + (props.dashboardFlags.overrideHoverPointers ? " unset-cursors" : "") + (flagExpectDrop ? " receiving-drop" : "")}
       style={{
         left: props.cardInfo.pos.left + "px",
         top: props.cardInfo.pos.top + "px",
