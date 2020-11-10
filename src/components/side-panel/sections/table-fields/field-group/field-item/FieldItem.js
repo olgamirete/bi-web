@@ -2,6 +2,9 @@ import React from 'react';
 import './FieldItem.css';
 
 function FieldItem(props) {
+  function handlerDragStart(e) {
+    e.dataTransfer.setData("text", e.target.id);
+  }
   return (
     <li
       // key={props.key}
@@ -9,7 +12,8 @@ function FieldItem(props) {
       draggable="true" >
       <span
         id={"table-" + props.tableId + "-field-" + props.fieldName}
-        draggable="true">
+        draggable="true"
+        onDragStart={handlerDragStart} >
           {props.fieldName}
       </span>
     </li>

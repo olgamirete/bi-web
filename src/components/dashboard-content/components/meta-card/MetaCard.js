@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import './MetaCard.css';
 import BarChart from '../card-content/charts/BarChart.js';
 import PieChart from '../card-content/charts/PieChart.js';
@@ -8,6 +8,24 @@ import BarChart2 from '../card-content/charts/BarChart2.js';
 const METACARD_BORDER_WIDTH = 1;
 
 function MetaCard(props) {
+
+  const [flagExpectDrop, setFlagExpectDrop] = useState(false);
+
+  const handlerDragOver = (e) => {
+    e.preventDefault();
+    setFlagExpectDrop(true);
+  }
+
+  const handlerDragLeave = (e) => {
+    setFlagExpectDrop(false);
+  }
+
+  const handlerDrop = (e) => {
+    e.preventDefault();
+    setFlagExpectDrop(false);
+    const data = e.dataTransfer.getData("text");
+    console.log(data);
+  }
 
   const Contents = useCallback((props) => {
     switch (props.cardInfo.type) {
@@ -31,12 +49,15 @@ function MetaCard(props) {
   return (
     <div
       id={props.cardInfo.id}
-      className={"resizeable-card-container" + (selected ? " selected" : "") + (props.controlFlags.snapToGrid ? " animate-all" : "" ) + (props.dashboardFlags.overrideHoverPointers ? " unset-cursors" : "")}
+      className={"resizeable-card-container" + (selected ? " selected" : "") + (props.controlFlags.snapToGrid ? " animate-all" : "") + (props.dashboardFlags.overrideHoverPointers ? " unset-cursors" : "") + (flagExpectDrop ? " receiving-drop" : "")}
       style={{
         left: props.cardInfo.pos.left + "px",
         top: props.cardInfo.pos.top + "px",
         backgroundColor: props.color
-      }}>
+      }}
+      onDragOver={handlerDragOver}
+      onDragLeave={handlerDragLeave}
+      onDrop={handlerDrop} >
       <div className="col-container">
         <div className="corner nw" data-anchor={{ right: true, bottom: true }}></div>
         <div className="border vertical left" data-anchor={{ right: true, bottom: false }}></div>
@@ -53,7 +74,7 @@ function MetaCard(props) {
             height: props.cardInfo.size.height + "px",
             borderWidth: METACARD_BORDER_WIDTH
           }}>
-            <Contents {...props} borderWidth={METACARD_BORDER_WIDTH} />
+          <Contents {...props} borderWidth={METACARD_BORDER_WIDTH} />
           {/* {props.children} */}
           {/* {"Debug info: " + debugInfo} */}
           {/* {"controller index: " + controllerPointerIndex} */}

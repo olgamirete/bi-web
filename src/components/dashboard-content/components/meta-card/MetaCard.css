@@ -10,6 +10,11 @@
     /* box-sizing: border-box; */
     z-index: 0;
   }
+
+  .resizeable-card-container.receiving-drop .background {
+    fill: #69e71f;
+  }
+
   
   .resizeable-card-container.animate-all {
     /* transition: all 0.05s ease-in; */
