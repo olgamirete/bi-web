@@ -12,17 +12,17 @@ function MetaCard(props) {
   const Contents = useCallback((props) => {
     switch (props.cardInfo.type) {
       case "barchart":
-        return <BarChart {...props}/>
+        return <BarChart {...props} />
       case "piechart":
-        return <PieChart {...props}/>
+        return <PieChart {...props} />
       case "linechart":
-        return <LineChart {...props}/>
+        return <LineChart {...props} />
       case "barchart2":
-        return <BarChart2 {...props}/> 
+        return <BarChart2 {...props} />
       default:
         // return <div>empty</div>
-        return <BarChart {...props}/>
-        // break;
+        return <BarChart {...props} />
+      // break;
     }
   }, []);
 
