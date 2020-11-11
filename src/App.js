@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './ColorPalette.css';
 
 // Custom hooks-----------------------------------------------------------------
 import useControls from './customHooks/useControls.js';
