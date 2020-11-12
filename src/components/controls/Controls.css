@@ -74,3 +74,32 @@
     border-color: rgb(52, 79, 90);
     color: rgb(52, 79, 90);
 } */
+
+/* Theme 2 */
+.controls.theme-2 {
+    background-color: var(--vivid-burgundy);
+}
+.controls.theme-2 .button {
+    background-color: var(--vivid-burgundy-4);
+    border-color: var(--vivid-burgundy-5);
+    color: #ffffff;
+}
+.controls.theme-2 .button:hover {
+    background-color: var(--vivid-burgundy-4);
+    border-color: var(--sunglow-4);
+    box-shadow: 0px 0px 3px 1px var(--vivid-burgundy-4);
+}
+.controls.theme-2 .button.active {
+    background-color: var(--vivid-burgundy-5);
+    border-color: var(--sunglow-4);
+}
+.controls.theme-2 .button.disabled {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+.controls.theme-2 .button.disabled:hover {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
