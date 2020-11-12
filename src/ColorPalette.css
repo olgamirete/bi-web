@@ -1,47 +1,39 @@
 :root {
-    /* CSS HEX */
-    /* --bw-blue-dark: #02182bff;
-    --bw-blue-light: #2d80a1ff;
-    --bw-pink-light: #eac5d8ff;
-    --bw-pink-dark: #8b575cff;
-    --bw-pink: #a61c3cff;
-    --bw-red: #92140cff;
-    --bw-yellow: #ffd23fff;
-    --bw-green: #09bc8aff; */
-    --oxford-blue:      hsla(208, 91%, 9%, 1);
-    --cg-blue:          hsla(197, 56%, 40%, 1);
-    --queen-pink:       hsla(329, 47%, 85%, 1);
-    --rose-taupe:       hsla(354, 23%, 44%, 1);
-    --vivid-burgundy:   hsla(346, 71%, 38%, 1);
-    --dark-red:         hsla(4, 85%, 31%, 1);
-    --sunglow:          hsla(46, 100%, 62%, 1);
-    --mountain-meadow:  hsla(163, 91%, 39%, 1);
-    /* https://coolors.co/02182b-2d80a1-eac5d8-8b575c-a61c3c-92140c-ffd23f-09bc8a */
+    
+    --sonic-silver: hsla(0, 0%, 47%, 1);
+    --oxford-blue: hsla(208, 91%, 9%, 1);
+    --cg-blue: hsla(197, 56%, 40%, 1);
+    --queen-pink: hsla(329, 47%, 85%, 1);
+    --vivid-burgundy: hsla(346, 71%, 38%, 1);
+    --dark-red: hsla(4, 85%, 31%, 1);
+    --sunglow: hsla(46, 100%, 62%, 1);
+    --mountain-meadow: hsla(163, 91%, 39%, 1);
+    /* https://coolors.co/787878-02182b-2d80a1-eac5d8-a61c3c-92140c-ffd23f-09bc8a */
 
+    --sonic-silver-1: hsla(0.0, 0.0%, 84.6%, 1.0);
+    --sonic-silver-2: hsla(0.0, 0.0%, 75.2%, 1.0);
+    --sonic-silver-3: hsla(0.0, 0.0%, 65.8%, 1.0);
+    --sonic-silver-4: hsla(0.0, 0.0%, 35.25%, 1.0);
+    --sonic-silver-5: hsla(0.0, 0.0%, 23.5%, 1.0);
+    
     --oxford-blue-1: hsla(208.0, 91.0%, 16.2%, 1.0);
     --oxford-blue-2: hsla(208.0, 91.0%, 14.4%, 1.0);
     --oxford-blue-3: hsla(208.0, 91.0%, 12.6%, 1.0);
     --oxford-blue-4: hsla(208.0, 91.0%, 6.75%, 1.0);
     --oxford-blue-5: hsla(208.0, 91.0%, 4.5%, 1.0);
-
+    
     --cg-blue-1: hsla(197.0, 56.0%, 72.0%, 1.0);
     --cg-blue-2: hsla(197.0, 56.0%, 64.0%, 1.0);
     --cg-blue-3: hsla(197.0, 56.0%, 56.0%, 1.0);
     --cg-blue-4: hsla(197.0, 56.0%, 30.0%, 1.0);
     --cg-blue-5: hsla(197.0, 56.0%, 20.0%, 1.0);
-
+    
     --queen-pink-1: hsla(329.0, 47.0%, 100.0%, 1.0);
     --queen-pink-2: hsla(329.0, 47.0%, 100.0%, 1.0);
     --queen-pink-3: hsla(329.0, 47.0%, 100.0%, 1.0);
     --queen-pink-4: hsla(329.0, 47.0%, 63.75%, 1.0);
     --queen-pink-5: hsla(329.0, 47.0%, 42.5%, 1.0);
-
-    --rose-taupe-1: hsla(354.0, 23.0%, 79.2%, 1.0);
-    --rose-taupe-2: hsla(354.0, 23.0%, 70.4%, 1.0);
-    --rose-taupe-3: hsla(354.0, 23.0%, 61.6%, 1.0);
-    --rose-taupe-4: hsla(354.0, 23.0%, 33.0%, 1.0);
-    --rose-taupe-5: hsla(354.0, 23.0%, 22.0%, 1.0);
-
+    
     --vivid-burgundy-1: hsla(346.0, 71.0%, 68.4%, 1.0);
     --vivid-burgundy-2: hsla(346.0, 71.0%, 60.8%, 1.0);
     --vivid-burgundy-3: hsla(346.0, 71.0%, 53.2%, 1.0);
@@ -65,5 +57,5 @@
     --mountain-meadow-3: hsla(163.0, 91.0%, 54.6%, 1.0);
     --mountain-meadow-4: hsla(163.0, 91.0%, 29.25%, 1.0);
     --mountain-meadow-5: hsla(163.0, 91.0%, 19.5%, 1.0);
-    
+
 }
