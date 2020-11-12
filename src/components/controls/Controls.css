@@ -12,8 +12,6 @@
 .controls {
     width: 100%;
     height: 50px;
-    background-color: rgb(45, 128, 161);
-    /* background-color: var(--bw-pink); */
     /* background: linear-gradient(var(--bw-pink), var(--bw-blue-dark)); */
     display: flex;
     flex-flow: row nowrap;
@@ -28,56 +26,62 @@
 
 .controls .button {
     height: 30px;
-    background-color: rgb(87, 133, 151);
-    /* background-color: var(--bw-pink-light); */
     border-radius: 3px;
-    border-color: rgb(52, 79, 90);
-    /* border-color: var(--bw-pink-dark); */
     border-style: solid;
     border-width: 1px;
-    color: #ffffff;
-    /* color: var(--bw-blue-dark); */
     box-sizing: content-box;
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
 }
-.controls .button:hover {
-    background-color: rgb(102, 172, 199);
-    border-color: #f3ae19;
-    box-shadow: 0px 0px 3px 1px rgba(243,174,25,0.7);
-}
-.controls .button.active {
-    background-color: rgb(46, 70, 80);
-    border-color: rgb(107, 158, 180);
-}
+
 .controls .button:not(:last-child) {
     margin-right: 5px;
-}
-
-.controls .button.disabled {
-    background-color: #555555;
-    color: #333333;
-}
-.controls .button.disabled:hover {
-    background-color: #555555;
-    color: #333333;
 }
 
 .controls .textbox {
     display: inline-block;
     height: 30px;
-    /* width: min-content; */
-    /* min-width: 30px; */
-    background-color: rgb(238, 238, 230);
     border-radius: 3px;
-    border-color: rgb(52, 79, 90);
     border-style: solid;
     border-width: 1px;
-    color: rgb(52, 79, 90);
     padding: 0;
     padding-left: 7px;
     padding-right: 7px;
     text-align: center;
 }
+
+/* Theme 1 */
+.controls.theme-1 {
+    background-color: var(--cg-blue);
+}
+.controls.theme-1 .button {
+    background-color: var(--cg-blue-4);
+    border-color: var(--cg-blue-5);
+    color: #ffffff;
+}
+.controls.theme-1 .button:hover {
+    background-color: var(--cg-blue-4);
+    border-color: var(--sunglow-4);
+    box-shadow: 0px 0px 3px 1px var(--cg-blue-4);
+}
+.controls.theme-1 .button.active {
+    background-color: var(--cg-blue-5);
+    border-color: var(--sunglow-4);
+}
+.controls.theme-1 .button.disabled {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+.controls.theme-1 .button.disabled:hover {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+/* .controls.theme-1 .textbox {
+    background-color: rgb(238, 238, 230);
+    border-color: rgb(52, 79, 90);
+    color: rgb(52, 79, 90);
+} */
