@@ -58,7 +58,7 @@
     text-align: center;
 }
 
-/* Theme 1 */
+/* Theme 1: cg-blue */
 .controls.theme-1 {
     background-color: var(--cg-blue);
 }
@@ -92,14 +92,14 @@
     color: rgb(52, 79, 90);
 } */
 
-/* Theme 2 */
+/* Theme 2: vivid-burgundy */
 .controls.theme-2 {
     background-color: var(--vivid-burgundy);
 }
 .controls.theme-2 .button {
     background-color: var(--vivid-burgundy-4);
     border-color: var(--vivid-burgundy-5);
-    color: #ffffff;
+    color: var(--sonic-silver-1);
 }
 .controls.theme-2 .button:hover {
     background-color: var(--vivid-burgundy-4);
@@ -116,6 +116,122 @@
     color: var(--sonic-silver-5);
 }
 .controls.theme-2 .button.disabled:hover {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+
+/* Theme 3: dark-red */
+.controls.theme-3 {
+    background-color: var(--dark-red);
+}
+.controls.theme-3 .button {
+    background-color: var(--dark-red-4);
+    border-color: var(--dark-red-5);
+    color: var(--sonic-silver-1);
+}
+.controls.theme-3 .button:hover {
+    background-color: var(--dark-red-4);
+    border-color: var(--sunglow-4);
+    box-shadow: 0px 0px 3px 1px var(--dark-red-4);
+}
+.controls.theme-3 .button.active {
+    background-color: var(--dark-red-5);
+    border-color: var(--sunglow-4);
+}
+.controls.theme-3 .button.disabled {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+.controls.theme-3 .button.disabled:hover {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+
+/* Theme 4: oxford-blue */
+.controls.theme-4 {
+    background-color: var(--oxford-blue);
+}
+.controls.theme-4 .button {
+    background-color: var(--oxford-blue-4);
+    border-color: var(--oxford-blue-5);
+    color: var(--sonic-silver-1);
+}
+.controls.theme-4 .button:hover {
+    background-color: var(--oxford-blue-4);
+    border-color: var(--sunglow-4);
+    box-shadow: 0px 0px 3px 1px var(--oxford-blue-4);
+}
+.controls.theme-4 .button.active {
+    background-color: var(--oxford-blue-5);
+    border-color: var(--sunglow-4);
+}
+.controls.theme-4 .button.disabled {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+.controls.theme-4 .button.disabled:hover {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+
+/* Theme 5: sunglow */
+.controls.theme-5 {
+    background-color: var(--sunglow);
+}
+.controls.theme-5 .button {
+    background-color: var(--sunglow-4);
+    border-color: var(--sunglow-5);
+    color: var(--sonic-silver-1);
+}
+.controls.theme-5 .button:hover {
+    background-color: var(--sunglow-4);
+    border-color: var(--sunglow-4);
+    box-shadow: 0px 0px 3px 1px var(--sunglow-4);
+}
+.controls.theme-5 .button.active {
+    background-color: var(--sunglow-5);
+    border-color: var(--sunglow-4);
+}
+.controls.theme-5 .button.disabled {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+.controls.theme-5 .button.disabled:hover {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+
+/* Theme 6 */
+.controls.theme-6 {
+    background-color: var(--mountain-meadow);
+}
+.controls.theme-6 .button {
+    background-color: var(--mountain-meadow-4);
+    border-color: var(--mountain-meadow-5);
+    color: var(--sonic-silver-1);
+}
+.controls.theme-6 .button:hover {
+    background-color: var(--mountain-meadow-4);
+    border-color: var(--sunglow-4);
+    box-shadow: 0px 0px 3px 1px var(--mountain-meadow-4);
+}
+.controls.theme-6 .button.active {
+    background-color: var(--mountain-meadow-5);
+    border-color: var(--sunglow-4);
+}
+.controls.theme-6 .button.disabled {
+    background-color: var(--sonic-silver-4);
+    border-color: var(--sonic-silver-5);
+    color: var(--sonic-silver-5);
+}
+.controls.theme-6 .button.disabled:hover {
     background-color: var(--sonic-silver-4);
     border-color: var(--sonic-silver-5);
     color: var(--sonic-silver-5);
