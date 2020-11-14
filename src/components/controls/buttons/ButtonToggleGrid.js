@@ -10,7 +10,8 @@ function ButtonToggleGrid(props) {
     return (
     <button
         alt="Toggle display grid"
-        className={"button square" + (props.flagDisplayGrid ? " active" : "")}
+        // className={"button square" + (props.flagDisplayGrid ? " active" : "")}
+        className={"button square"}
         onPointerDown={props.toggleDisplayGrid} >
         {buttonIcon}
       </button>

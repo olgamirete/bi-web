@@ -1,21 +1,24 @@
 import React from 'react';
 import './Controls.css';
 import ButtonToggleGrid from './buttons/ButtonToggleGrid.js';
+import ButtonSelect from './buttons/ButtonSelect.js';
+import ButtonDelete from './buttons/ButtonDelete.js';
+import ButtonAdd from './buttons/ButtonAdd.js';
+import ButtonToggleMenu from './buttons/ButtonToggleMenu.js';
+import ButtonUndo from './buttons/ButtonUndo.js';
+import ButtonRedo from './buttons/ButtonRedo.js';
 
 function Controls(props) {
-  // const [test, setTest] = useState(false);
-  // const toggleTest = () => setTest(prevTest => !prevTest);
   return (
     <div className="controls theme-6">
-      <button
-        className="button"
-        onPointerDown={props.controlMethods.toggleSidePanel}>Toggle menu</button>
-      <button
-        className={"button" + (props.cardFlags.canUndo ? "" : " disabled")}
-        onPointerDown={props.cardMethods.undo}>Undo</button>
-      <button
-        className={"button" + (props.cardFlags.canRedo ? "" : " disabled")}
-        onPointerDown={props.cardMethods.redo}>Redo</button>
+      <ButtonToggleMenu
+        toggleSidePanel={props.controlMethods.toggleSidePanel} />
+      <ButtonUndo
+        flagCanUndo={props.cardFlags.canUndo}
+        methodUndo={props.cardMethods.undo} />
+      <ButtonRedo
+        flagCanRedo={props.cardFlags.canRedo}
+        methodRedo={props.cardMethods.redo} />
       <button
         alt="Toggle snap to grid"
         className={"button" + (props.controlFlags.snapToGrid ? " active" : "")}
@@ -25,15 +28,13 @@ function Controls(props) {
       <ButtonToggleGrid
         flagDisplayGrid={props.controlFlags.displayGrid}
         toggleDisplayGrid={props.controlMethods.toggleDisplayGrid} />
-      <button
-        className="button"
-        onPointerDown={() => props.cardMethods.add({ pos: { left: 20, top: 20 } })}>+</button>
-      <button
-        className={"button" + (props.controlFlags.allowSelection ? " active" : "")}
-        onPointerDown={props.controlMethods.toggleFlagAllowSelection}>Select</button>
-      <button
-        className="button"
-        onPointerDown={props.cardMethods.deleteSelected}>Delete</button>
+      <ButtonAdd
+        addCard={props.cardMethods.add} />
+      <ButtonSelect
+        flagAllowSelection={props.controlFlags.allowSelection}
+        toggleFlagAllowSelection={props.controlMethods.toggleFlagAllowSelection} />
+      <ButtonDelete
+        deleteSelected={props.cardMethods.deleteSelected} />
     </div>
   );
 }
