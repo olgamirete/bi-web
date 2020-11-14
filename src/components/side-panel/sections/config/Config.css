@@ -1,0 +1,34 @@
+.section .theme-selector {
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-radius: 3px;
+    border-width: 1px;
+    margin: 3px;
+    /* display: block; */
+}
+
+.section .theme-selector.theme-1 {
+    background-color: var(--cg-blue);
+    border-color: var(--cg-blue-4);
+}
+.section .theme-selector.theme-2 {
+    background-color: var(--vivid-burgundy);
+    border-color: var(--vivid-burgundy-4);
+}
+.section .theme-selector.theme-3 {
+    background-color: var(--dark-red);
+    border-color: var(--dark-red-4);
+}
+.section .theme-selector.theme-4 {
+    background-color: var(--oxford-blue);
+    border-color: var(--oxford-blue-4);
+}
+.section .theme-selector.theme-5 {
+    background-color: var(--sunglow);
+    border-color: var(--sunglow-4);
+}
+.section .theme-selector.theme-6 {
+    background-color: var(--mountain-meadow);
+    border-color: var(--mountain-meadow-4);
+}

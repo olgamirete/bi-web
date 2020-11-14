@@ -10,7 +10,7 @@ import ButtonRedo from './buttons/ButtonRedo.js';
 
 function Controls(props) {
   return (
-    <div className="controls theme-6">
+    <div className={"controls " + (props.config.theme === null ? "theme-1" : props.config.theme)}>
       <ButtonToggleMenu
         toggleSidePanel={props.controlMethods.toggleSidePanel} />
       <ButtonUndo

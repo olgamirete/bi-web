@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SidePanel.css';
 import TableFields from './sections/table-fields/TableFields.js';
 import CardFormat from './sections/card-format/CardFormat.js';
-import Other from './sections/other/Other.js';
+import Config from './sections/config/Config.js';
 
 function SidePanel(props) {
 
@@ -38,17 +38,17 @@ function SidePanel(props) {
           <span className="text">Format</span>
         </button>
         <button
-          data-section="other"
-          className={activeSection === "other" ? "active" : ""}
+          data-section="config"
+          className={activeSection === "config" ? "active" : ""}
           onPointerDown={handlePointerDown}>
-          <span className="text">Other</span>
+          <span className="text">Config</span>
         </button>
       </div>
 
       <div className="sections-container">
         <TableFields activeSection={activeSection} dataStructure={props.dataStructure} />
         <CardFormat activeSection={activeSection} cardMethods={props.cardMethods} />
-        <Other activeSection={activeSection} />
+        <Config activeSection={activeSection} config={props.config} />
       </div>
     </div>
   );

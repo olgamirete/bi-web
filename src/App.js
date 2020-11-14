@@ -6,6 +6,7 @@ import './ColorPalette.css';
 import useControls from './customHooks/useControls.js';
 import useCards from './customHooks/useCards.js';
 import useData from './customHooks/useData.js';
+import useConfig from './customHooks/useConfig.js';
 // -----------------------------------------------------------------------------
 
 // Basic components-------------------------------------------------------------
@@ -20,6 +21,8 @@ function App() {
   
   const [cards, cardFlags, cardMethods] = useCards(controlFlags);
   const [dataStructure, data] = useData();
+  
+  const config = useConfig();
 
   return (
     <div
@@ -29,7 +32,8 @@ function App() {
         cardFlags={cardFlags}
         cardMethods={cardMethods}
         controlFlags={controlFlags}
-        controlMethods={controlMethods} />
+        controlMethods={controlMethods}
+        config={config} />
 
       <div className="container-for-side-panel-and-content">
         
@@ -37,7 +41,8 @@ function App() {
           controlFlags={controlFlags}
           controlMethods={controlMethods}
           dataStructure={dataStructure}
-          cardMethods={cardMethods} />
+          cardMethods={cardMethods}
+          config={config} />
         
         <DashboardContent
           cards={cards}
