@@ -5,13 +5,13 @@ import { ReactComponent as IconGridOff } from './icons/grid_off.svg';
 
 function ButtonToggleGrid(props) {
   
-    const buttonIcon =  props.controlFlags.displayGrid ? <IconGridOn className="icon" /> : <IconGridOff className="icon" />
+    const buttonIcon =  props.flagDisplayGrid ? <IconGridOn className="icon" /> : <IconGridOff className="icon" />
 
     return (
     <button
         alt="Toggle display grid"
-        className={"button square" + (props.controlFlags.displayGrid ? " active" : "")}
-        onPointerDown={props.controlMethods.toggleDisplayGrid} >
+        className={"button square" + (props.flagDisplayGrid ? " active" : "")}
+        onPointerDown={props.toggleDisplayGrid} >
         {buttonIcon}
       </button>
   );

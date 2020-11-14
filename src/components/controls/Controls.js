@@ -23,8 +23,8 @@ function Controls(props) {
         Snap to grid
       </button>
       <ButtonToggleGrid
-        controlFlags={props.controlFlags}
-        controlMethods={props.controlMethods} />
+        flagDisplayGrid={props.controlFlags.displayGrid}
+        toggleDisplayGrid={props.controlMethods.toggleDisplayGrid} />
       <button
         className="button"
         onPointerDown={() => props.cardMethods.add({ pos: { left: 20, top: 20 } })}>+</button>
