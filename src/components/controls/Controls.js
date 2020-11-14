@@ -6,7 +6,7 @@ function Controls(props) {
   // const [test, setTest] = useState(false);
   // const toggleTest = () => setTest(prevTest => !prevTest);
   return (
-    <div className="controls theme-1">
+    <div className="controls theme-6">
       <button
         className="button"
         onPointerDown={props.controlMethods.toggleSidePanel}>Toggle menu</button>
