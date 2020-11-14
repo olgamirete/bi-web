@@ -1,5 +1,6 @@
 import React from 'react';
 import './Controls.css';
+import ButtonToggleGrid from './buttons/ButtonToggleGrid.js';
 
 function Controls(props) {
   // const [test, setTest] = useState(false);
@@ -21,12 +22,9 @@ function Controls(props) {
         onPointerDown={props.controlMethods.toggleSnapToGrid}>
         Snap to grid
       </button>
-      <button
-        alt="Toggle display grid"
-        className={"button" + (props.controlFlags.displayGrid ? " active" : "")}
-        onPointerDown={props.controlMethods.toggleDisplayGrid}>
-        Display grid
-      </button>
+      <ButtonToggleGrid
+        controlFlags={props.controlFlags}
+        controlMethods={props.controlMethods} />
       <button
         className="button"
         onPointerDown={() => props.cardMethods.add({ pos: { left: 20, top: 20 } })}>+</button>
