@@ -10,12 +10,13 @@
     /* justify-content: center; */
     /* box-sizing: content-box; */
 }
-
+.side-panel .sections-container {
+    /* display: none; */
+    width: 30vw;
+    min-width: 150px;
+}
 .side-panel.hide {
     width: 38px;
-}
-.side-panel.hide .sections-container {
-    /* display: none; */
 }
 
 .side-panel .buttons-container {
