@@ -7,6 +7,7 @@ import ButtonAdd from './buttons/ButtonAdd.js';
 import ButtonToggleMenu from './buttons/ButtonToggleMenu.js';
 import ButtonUndo from './buttons/ButtonUndo.js';
 import ButtonRedo from './buttons/ButtonRedo.js';
+import ButtonToggleSnapToGrid from './buttons/ButtonToggleSnapToGrid';
 
 function Controls(props) {
   return (
@@ -19,12 +20,9 @@ function Controls(props) {
       <ButtonRedo
         flagCanRedo={props.cardFlags.canRedo}
         methodRedo={props.cardMethods.redo} />
-      <button
-        alt="Toggle snap to grid"
-        className={"button" + (props.controlFlags.snapToGrid ? " active" : "")}
-        onPointerDown={props.controlMethods.toggleSnapToGrid}>
-        Snap to grid
-      </button>
+      <ButtonToggleSnapToGrid
+        flagSnapToGrid={props.controlFlags.snapToGrid}
+        methodToggleSnapToGrid={props.controlMethods.toggleSnapToGrid} />
       <ButtonToggleGrid
         flagDisplayGrid={props.controlFlags.displayGrid}
         toggleDisplayGrid={props.controlMethods.toggleDisplayGrid} />
