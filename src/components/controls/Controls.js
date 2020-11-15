@@ -20,12 +20,12 @@ function Controls(props) {
       <ButtonRedo
         flagCanRedo={props.cardFlags.canRedo}
         methodRedo={props.cardMethods.redo} />
-      <ButtonToggleSnapToGrid
-        flagSnapToGrid={props.controlFlags.snapToGrid}
-        methodToggleSnapToGrid={props.controlMethods.toggleSnapToGrid} />
       <ButtonToggleGrid
         flagDisplayGrid={props.controlFlags.displayGrid}
         toggleDisplayGrid={props.controlMethods.toggleDisplayGrid} />
+      <ButtonToggleSnapToGrid
+        flagSnapToGrid={props.controlFlags.snapToGrid}
+        methodToggleSnapToGrid={props.controlMethods.toggleSnapToGrid} />
       <ButtonAdd
         addCard={props.cardMethods.add} />
       <ButtonSelect
