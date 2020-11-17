@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import './MetaCard.css';
-import BarChart from '../card-content/charts/BarChart.js';
+import ScatterPlot from '../card-content/charts/ScatterPlot.js';
 import PieChart from '../card-content/charts/PieChart.js';
 import LineChart from '../card-content/charts/LineChart.js';
 import BarChart2 from '../card-content/charts/BarChart2.js';
@@ -29,8 +29,8 @@ function MetaCard(props) {
 
   const Contents = useCallback((props) => {
     switch (props.cardInfo.type) {
-      case "barchart":
-        return <BarChart {...props} />
+      case "scatterplot":
+        return <ScatterPlot {...props} />
       case "piechart":
         return <PieChart {...props} />
       case "linechart":
@@ -39,7 +39,7 @@ function MetaCard(props) {
         return <BarChart2 {...props} />
       default:
         // return <div>empty</div>
-        return <BarChart {...props} />
+        return <ScatterPlot {...props} />
       // break;
     }
   }, []);

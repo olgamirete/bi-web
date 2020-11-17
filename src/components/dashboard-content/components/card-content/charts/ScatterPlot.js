@@ -1,7 +1,7 @@
 import React from 'react';
-import './BarChart.css';
+import './ScatterPlot.css';
 
-function BarChart(props) {
+function ScatterPlot(props) {
 
   const chartWidth = props.cardInfo.size.width - 2 * props.borderWidth;
   const chartHeight = props.cardInfo.size.height - 2 * props.borderWidth;
@@ -107,4 +107,4 @@ function BarChart(props) {
   );
 }
 
-export default BarChart;
+export default ScatterPlot;

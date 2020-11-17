@@ -7,8 +7,8 @@ function CardFormat(props) {
       <h3 className="title">Format</h3>
           <h4>Set chart type</h4>
           <button
-            onPointerDown={() => props.cardMethods.setContentTypeOfSelectedCards("barchart")} >
-            Bar chart
+            onPointerDown={() => props.cardMethods.setContentTypeOfSelectedCards("scatterplot")} >
+            Scatter plot
           </button>
           <button
             onPointerDown={() => props.cardMethods.setContentTypeOfSelectedCards("piechart")} >
