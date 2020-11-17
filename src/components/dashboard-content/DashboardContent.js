@@ -37,7 +37,8 @@ function DashboardContent(props) {
             key={i}
             cardInfo={cardInfo}
             dashboardFlags={dashboardFlags}
-            controlFlags={props.controlFlags} />
+            controlFlags={props.controlFlags}
+            data={props.data} />
         })
       }
       <SelectionRectangle selRectInfo={dashboardProps.selectionRectangleProps} />
