@@ -46,7 +46,7 @@ function SidePanel(props) {
       </div>
 
       <div className="sections-container">
-        <TableFields activeSection={activeSection} dataStructure={props.dataStructure} />
+        <TableFields activeSection={activeSection} dataStructure={props.dataStructure} config={props.config} />
         <CardFormat activeSection={activeSection} cardMethods={props.cardMethods} />
         <Config activeSection={activeSection} config={props.config} />
       </div>

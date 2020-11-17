@@ -1,3 +1,108 @@
-/* .table-fields-section .fields-list .field-item {
+.table-fields-section .fields-list .field-item {
+    /* Border */
+    border-style: solid;
+    border-radius: 2px;
+    border-width: 1px;
 
-} */
+    /* List */
+    list-style: none;
+    
+    /* Animation */
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    
+    /* General */
+    margin-top: 4px;
+    /* margin-bottom: 2px; */
+    padding: 1px;
+    padding-left: 3px;
+    padding-right: 3px;
+    font-size: 15px;
+
+}
+.table-fields-section .fields-list .field-item:hover {
+    background-color: var(--cg-blue-2);
+    cursor: grab;
+    /* list-style: disc; */
+}
+.table-fields-section .fields-list .field-item.dragging {
+    cursor: grabbing;
+    /* list-style: disc; */
+}
+
+/* Theme data */
+
+.table-fields.theme-1 .fields-list .field-item {
+    background-color: var(--cg-blue-1);
+    border-color: var(--cg-blue-4);
+    color: #000000;
+}
+.table-fields.theme-1 .fields-list .field-item:hover {
+    background-color: var(--cg-blue-2);
+}
+.table-fields.theme-1 .fields-list .field-item.dragging {
+    background-color: var(--cg-blue-3);
+}
+
+.table-fields.theme-2 .fields-list .field-item {
+    background-color: var(--vivid-burgundy-1);
+    border-color: var(--vivid-burgundy-4);
+    color: #000000;
+}
+.table-fields.theme-2 .fields-list .field-item:hover {
+    background-color: var(--vivid-burgundy-2);
+}
+.table-fields.theme-2 .fields-list .field-item.dragging {
+    background-color: var(--vivid-burgundy-3);
+}
+
+.table-fields.theme-3 .fields-list .field-item {
+    background-color: var(--dark-red-1);
+    border-color: var(--dark-red-4);
+    color: #ffffff;
+}
+.table-fields.theme-3 .fields-list .field-item:hover {
+    background-color: var(--dark-red-2);
+}
+.table-fields.theme-3 .fields-list .field-item.dragging {
+    background-color: var(--dark-red-3);
+}
+
+.table-fields.theme-4 .fields-list .field-item {
+    background-color: var(--oxford-blue-1);
+    border-color: var(--oxford-blue-4);
+    color: #ffffff;
+}
+.table-fields.theme-4 .fields-list .field-item:hover {
+    background-color: var(--oxford-blue-2);
+}
+.table-fields.theme-4 .fields-list .field-item.dragging {
+    background-color: var(--oxford-blue-3);
+}
+
+.table-fields.theme-5 .fields-list .field-item {
+    background-color: var(--sunglow-1);
+    border-color: var(--sunglow-4);
+    color: #000000;
+}
+.table-fields.theme-5 .fields-list .field-item:hover {
+    background-color: var(--sunglow-2);
+}
+.table-fields.theme-5 .fields-list .field-item.dragging {
+    background-color: var(--sunglow-3);
+}
+
+.table-fields.theme-6 .fields-list .field-item {
+    background-color: var(--mountain-meadow);
+    border-color: var(--mountain-meadow-5);
+    color: #ffffff;
+}
+.table-fields.theme-6 .fields-list .field-item:hover {
+    background-color: var(--mountain-meadow-4);
+    /* border-color: var(--mountain-meadow-4); */
+}
+.table-fields.theme-6 .fields-list .field-item.dragging {
+    background-color: var(--mountain-meadow-5);
+}
