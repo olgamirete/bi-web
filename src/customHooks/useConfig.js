@@ -37,7 +37,7 @@ function useConfig() {
     VALID_THEMES: VALID_THEMES
   }
 
-  return config
+  return config;
 
 }
 
