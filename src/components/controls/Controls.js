@@ -11,7 +11,7 @@ import ButtonToggleSnapToGrid from './buttons/ButtonToggleSnapToGrid';
 
 function Controls(props) {
   return (
-    <div className={"controls " + (props.config.theme === null ? "theme-1" : props.config.theme)}>
+    <div className={"controls " + props.config.theme}>
       <ButtonToggleMenu
         toggleSidePanel={props.controlMethods.toggleSidePanel} />
       <ButtonUndo
