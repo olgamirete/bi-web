@@ -33,7 +33,8 @@ function useConfig() {
   const config = {
     theme: theme,
     setTheme: changeTheme,
-    clearTheme: clearTheme
+    clearTheme: clearTheme,
+    VALID_THEMES: VALID_THEMES
   }
 
   return config
