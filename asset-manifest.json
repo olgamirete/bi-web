@@ -1,20 +1,22 @@
 {
   "files": {
-    "main.css": "/bi-web/static/css/main.ec9e9ba1.chunk.css",
-    "main.js": "/bi-web/static/js/main.99574ab1.chunk.js",
-    "main.js.map": "/bi-web/static/js/main.99574ab1.chunk.js.map",
+    "main.css": "/bi-web/static/css/main.17a111e8.chunk.css",
+    "main.js": "/bi-web/static/js/main.3cbcc080.chunk.js",
+    "main.js.map": "/bi-web/static/js/main.3cbcc080.chunk.js.map",
     "runtime-main.js": "/bi-web/static/js/runtime-main.86169034.js",
     "runtime-main.js.map": "/bi-web/static/js/runtime-main.86169034.js.map",
-    "static/js/2.eba6ba23.chunk.js": "/bi-web/static/js/2.eba6ba23.chunk.js",
-    "static/js/2.eba6ba23.chunk.js.map": "/bi-web/static/js/2.eba6ba23.chunk.js.map",
+    "static/js/2.409f09a1.chunk.js": "/bi-web/static/js/2.409f09a1.chunk.js",
+    "static/js/2.409f09a1.chunk.js.map": "/bi-web/static/js/2.409f09a1.chunk.js.map",
     "index.html": "/bi-web/index.html",
-    "static/css/main.ec9e9ba1.chunk.css.map": "/bi-web/static/css/main.ec9e9ba1.chunk.css.map",
-    "static/js/2.eba6ba23.chunk.js.LICENSE.txt": "/bi-web/static/js/2.eba6ba23.chunk.js.LICENSE.txt",
+    "static/css/main.17a111e8.chunk.css.map": "/bi-web/static/css/main.17a111e8.chunk.css.map",
+    "static/js/2.409f09a1.chunk.js.LICENSE.txt": "/bi-web/static/js/2.409f09a1.chunk.js.LICENSE.txt",
     "static/media/index.css": "/bi-web/static/media/Montserrat-Regular.e20d5327.ttf",
     "static/media/delete.0c46faee.svg": "/bi-web/static/media/delete.0c46faee.svg",
     "static/media/grid_off.a8cc6055.svg": "/bi-web/static/media/grid_off.a8cc6055.svg",
     "static/media/grid_on.4d8dd6d3.svg": "/bi-web/static/media/grid_on.4d8dd6d3.svg",
     "static/media/hamburger.24f5dd3c.svg": "/bi-web/static/media/hamburger.24f5dd3c.svg",
+    "static/media/magnet_off.7cb5a6df.svg": "/bi-web/static/media/magnet_off.7cb5a6df.svg",
+    "static/media/magnet_on.c53faad1.svg": "/bi-web/static/media/magnet_on.c53faad1.svg",
     "static/media/plus.789bd1e2.svg": "/bi-web/static/media/plus.789bd1e2.svg",
     "static/media/redo.84d1aa0e.svg": "/bi-web/static/media/redo.84d1aa0e.svg",
     "static/media/select.c95797aa.svg": "/bi-web/static/media/select.c95797aa.svg",
@@ -22,8 +24,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.86169034.js",
-    "static/js/2.eba6ba23.chunk.js",
-    "static/css/main.ec9e9ba1.chunk.css",
-    "static/js/main.99574ab1.chunk.js"
+    "static/js/2.409f09a1.chunk.js",
+    "static/css/main.17a111e8.chunk.css",
+    "static/js/main.3cbcc080.chunk.js"
   ]
 }
