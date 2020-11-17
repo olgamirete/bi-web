@@ -28,3 +28,6 @@ yarn-error.log*
 
 # python scripts
 /python_scripts
+
+# old icons. Stored locally only for future recycling
+/src/components/controls/buttons/icons/old-icons
