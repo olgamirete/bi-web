@@ -94,12 +94,6 @@ function ScatterPlot(props) {
 
       {/* <!-- Grilla --> */}
 
-      {/* <!-- Barras --> */}
-      {/* <g>
-        <rect x="20" y="60" width="20" height="20" className="bar" />
-        <rect x="60" y="40" width="20" height="50" className="bar" />
-      </g> */}
-
       {/* <!-- Puntos --> */}
       {points}
 
