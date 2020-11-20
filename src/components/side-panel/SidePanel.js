@@ -22,7 +22,7 @@ function SidePanel(props) {
   }
 
   return (
-    <div className={"side-panel" + (props.controlFlags.showSidePanel ? "" : " hide")}>
+    <div className={"side-panel " + (props.config.theme) + (props.controlFlags.showSidePanel ? "" : " hide")}>
 
       <div className="buttons-container">
         <button

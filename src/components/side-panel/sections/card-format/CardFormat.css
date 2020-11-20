@@ -1,0 +1,98 @@
+.side-panel .card-format-section .card-format-button {
+    padding: 0px;
+    margin: 3px;
+    
+    height: 30px;
+    width: 30px;
+    
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2px;
+
+    display: inline-flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+}
+.side-panel .card-format-section svg.chart-icon {
+    height: 80%;
+    width: 80%;
+}
+
+.side-panel.theme-1 .card-format-section .card-format-button {
+    background-color: var(--sonic-silver-1);
+    border-color: var(--sonic-silver-3);
+}
+.side-panel.theme-1 .card-format-section .card-format-button:hover {
+    background-color: var(--sonic-silver-2);
+    /* box-shadow: 0px 0px 3px 1px var(--cg-blue-4); */
+}
+.side-panel.theme-1 .card-format-section .chart-icon {
+    fill: var(--cg-blue-4);
+}
+
+.side-panel.theme-2 .card-format-section .card-format-button {
+    background-color: var(--sonic-silver-1);
+    border-color: var(--sonic-silver-3);
+}
+.side-panel.theme-2 .card-format-section .card-format-button:hover {
+    background-color: var(--sonic-silver-2);
+    /* box-shadow: 0px 0px 3px 1px var(--cg-blue-4); */
+}
+.side-panel.theme-2 .card-format-section .chart-icon {
+    fill: var(--vivid-burgundy-4);
+}
+
+.side-panel.theme-3 .card-format-section .card-format-button {
+    background-color: var(--sonic-silver-1);
+    border-color: var(--sonic-silver-3);
+}
+.side-panel.theme-3 .card-format-section .card-format-button:hover {
+    background-color: var(--sonic-silver-2);
+    /* box-shadow: 0px 0px 3px 1px var(--cg-blue-4); */
+}
+.side-panel.theme-3 .card-format-section .chart-icon {
+    fill: var(--dark-red-4);
+}
+
+.side-panel.theme-4 .card-format-section .card-format-button {
+    background-color: var(--sonic-silver-1);
+    border-color: var(--sonic-silver-3);
+}
+.side-panel.theme-4 .card-format-section .card-format-button:hover {
+    background-color: var(--sonic-silver-2);
+    /* box-shadow: 0px 0px 3px 1px var(--cg-blue-4); */
+}
+.side-panel.theme-4 .card-format-section .chart-icon {
+    fill: var(--oxford-blue-4);
+}
+
+.side-panel.theme-5 .card-format-section .card-format-button {
+    background-color: var(--sonic-silver-1);
+    border-color: var(--sonic-silver-3);
+}
+.side-panel.theme-5 .card-format-section .card-format-button:hover {
+    background-color: var(--sonic-silver-2);
+    /* box-shadow: 0px 0px 3px 1px var(--cg-blue-4); */
+}
+.side-panel.theme-5 .card-format-section .chart-icon {
+    fill: var(--sunglow-4);
+}
+
+.side-panel.theme-6 .card-format-section .card-format-button {
+    background-color: var(--sonic-silver-1);
+    border-color: var(--sonic-silver-3);
+}
+.side-panel.theme-6 .card-format-section .card-format-button:hover {
+    background-color: var(--sonic-silver-2);
+    /* box-shadow: 0px 0px 3px 1px var(--cg-blue-4); */
+}
+.side-panel.theme-6 .card-format-section .chart-icon {
+    fill: var(--mountain-meadow-4);
+}

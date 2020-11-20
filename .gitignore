@@ -31,3 +31,6 @@ yarn-error.log*
 
 # old icons. Stored locally only for future recycling
 /src/components/controls/buttons/icons/old-icons
+
+# local copy of original icons as individual files
+/src/components/side-panel/sections/card-format/icons/original-icons
