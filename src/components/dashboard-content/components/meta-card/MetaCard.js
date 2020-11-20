@@ -3,7 +3,7 @@ import './MetaCard.css';
 import ScatterPlot from '../card-content/charts/ScatterPlot.js';
 import PieChart from '../card-content/charts/PieChart.js';
 import LineChart from '../card-content/charts/LineChart.js';
-import BarChart2 from '../card-content/charts/BarChart2.js';
+import BarChart from '../card-content/charts/BarChart.js';
 
 const METACARD_BORDER_WIDTH = 1;
 
@@ -35,8 +35,8 @@ function MetaCard(props) {
         return <PieChart {...props} />
       case "linechart":
         return <LineChart {...props} />
-      case "barchart2":
-        return <BarChart2 {...props} />
+      case "barchart":
+        return <BarChart {...props} />
       default:
         // return <div>empty</div>
         return <ScatterPlot {...props} />
